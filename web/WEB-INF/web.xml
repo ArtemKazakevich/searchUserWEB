@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>searchServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.searchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>searchServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/search</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>usersServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.usersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>usersServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/users</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>reportForSelectedUserServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.reportForSelectedUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>reportForSelectedUserServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/reportForSelectedUserServlet</url-pattern>
+    </servlet-mapping>
+</web-app>

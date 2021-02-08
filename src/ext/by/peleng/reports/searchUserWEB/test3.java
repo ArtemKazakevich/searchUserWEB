@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
-public class reportForSelectedUserServlet extends HttpServlet {
+public class test3 extends HttpServlet {
      
      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
@@ -36,14 +36,13 @@ public class reportForSelectedUserServlet extends HttpServlet {
 //          response.sendRedirect(path);
           
           WTUser selectedUser = getUserByName((String) request.getSession().getAttribute("selectedUser"));
-
+          
           String[] ids = request.getParameterValues("id");
-
+          
           if (ids != null && ids.length > 0) {
-               System.out.println("Hello!");
-               System.out.println("Hello!");
+               
                for (String oid : ids) {
-
+                    
                     ReferenceFactory refFact = new ReferenceFactory();
                     WTContainer container = null;
                     try {
@@ -51,30 +50,26 @@ public class reportForSelectedUserServlet extends HttpServlet {
                     } catch (WTException e) {
                          e.printStackTrace();
                     }
-
+                    
                     try {
                          ContainerTeam team = ContainerTeamHelper.service.getContainerTeam((ContainerTeamManaged) container);
-
+                         
                          Enumeration enum1 = ContainerTeamHelper.service.findContainerTeamGroups(team, ContainerTeamHelper.ROLE_GROUPS);
                          WTGroup group = (WTGroup) enum1.nextElement();
-
+                         
                          if (group.isMember(selectedUser)) {
-                              System.out.println("Hello!");
-                              System.out.println("Hello!");
-                              System.out.println("Hello!");
-                              System.out.println("Hello!");
                               wt.org.OrganizationServicesHelper.manager.removeMember(group, selectedUser);
                               wt.fc.PersistenceHelper.manager.save(selectedUser);
                          }
-
+                         
                     } catch (WTException e) {
                          e.printStackTrace();
                     }
-
+                    
                }
-
+               
           }
-
+          
           doGet(request, response);
      }
      

@@ -9,6 +9,8 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.IOException" %>
 <%@ page import="wt.util.WTPropertyVetoException" %>
+<%@ page import="wt.org.OrganizationServicesHelper" %>
+<%@ page import="wt.org.PrincipalCacheUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -64,7 +66,8 @@
                      if (itemCSV.getKey().equals(serviceNumber)) {
                          try {
                              user.setEMail(itemCSV.getValue());
-                             wt.fc.PersistenceHelper.manager.save(user);
+                             OrganizationServicesHelper.manager.updatePrincipal(user);
+                             PrincipalCacheUtil.getPrincipalCache().removePrincipal(user);
                          } catch (WTException e) {
                              e.printStackTrace();
                          } catch (WTPropertyVetoException e) {

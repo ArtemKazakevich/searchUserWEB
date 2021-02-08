@@ -1,12 +1,3 @@
-<%@ page import="wt.org.WTUser" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="wt.query.QuerySpec" %>
-<%@ page import="wt.query.SearchCondition" %>
-<%@ page import="wt.fc.PersistenceHelper" %>
-<%@ page import="wt.fc.QueryResult" %>
-<%@ page import="wt.pds.StatementSpec" %>
-<%@ page import="wt.util.WTException" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 

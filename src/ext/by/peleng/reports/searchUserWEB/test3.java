@@ -55,11 +55,20 @@ public class test3 extends HttpServlet {
                          ContainerTeam team = ContainerTeamHelper.service.getContainerTeam((ContainerTeamManaged) container);
                          
                          Enumeration enum1 = ContainerTeamHelper.service.findContainerTeamGroups(team, ContainerTeamHelper.ROLE_GROUPS);
-                         WTGroup group = (WTGroup) enum1.nextElement();
                          
-                         if (group.isMember(selectedUser)) {
-                              wt.org.OrganizationServicesHelper.manager.removeMember(group, selectedUser);
-                              wt.fc.PersistenceHelper.manager.save(selectedUser);
+                         while(enum1.hasMoreElements()){
+                              WTGroup group = (WTGroup) enum1.nextElement();
+     
+                              if (group.isMember(selectedUser)) {
+                                   System.out.println("Hello!!!");
+                                   System.out.println(enum1);
+                                   System.out.println(group);
+                                   System.out.println(selectedUser);
+                                   System.out.println("Hello!!!");
+                                   
+                                   wt.org.OrganizationServicesHelper.manager.removeMember(group, selectedUser);
+                                   wt.fc.PersistenceHelper.manager.save(selectedUser);
+                              }
                          }
                          
                     } catch (WTException e) {

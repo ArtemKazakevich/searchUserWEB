@@ -1,20 +1,11 @@
 package ext.by.peleng.reports.searchUserWEB;
 
-import wt.fc.PersistenceHelper;
-import wt.fc.QueryResult;
-import wt.fc.ReferenceFactory;
 import wt.inf.container.WTContainer;
-import wt.inf.library.WTLibrary;
-import wt.inf.team.ContainerTeam;
-import wt.inf.team.ContainerTeamHelper;
-import wt.inf.team.ContainerTeamManaged;
-import wt.inf.team.StandardContainerTeamService;
+import wt.inf.team.*;
 import wt.org.*;
-import wt.pdmlink.PDMLinkProduct;
 import wt.project.Role;
-import wt.query.QueryException;
-import wt.query.QuerySpec;
 import wt.util.WTException;
+import wt.pom.Transaction;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,55 +17,62 @@ import java.util.*;
 public class reportForSelectedUserServlet extends HttpServlet {
      
      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-//          String[] ids = request.getParameterValues("id");
-//          ArrayList<String> list = new ArrayList<>(Arrays.asList(ids));
-//
-//          request.getSession().setAttribute("list", list);
-//
-//          String path = request.getContextPath() + "/netmarkets/jsp/by/peleng/reports/searchUserWEB/list.jsp";
-//          response.sendRedirect(path);
-          
+     
           WTUser selectedUser = getUserByName((String) request.getSession().getAttribute("selectedUser"));
-
           String[] ids = request.getParameterValues("id");
-
+     
+          System.out.println("Start testDeleteUserFromRole");
+     
           if (ids != null && ids.length > 0) {
-               System.out.println("Hello!");
-               System.out.println("Hello!");
+          
                for (String oid : ids) {
-
-                    ReferenceFactory refFact = new ReferenceFactory();
-                    WTContainer container = null;
+               
+                    wt.fc.ReferenceFactory rf = new wt.fc.ReferenceFactory();
+                    Object objContainer = null;
+                    
                     try {
-                         container = (WTContainer) refFact.getReference(oid).getObject();
+                         objContainer = rf.getReference(oid).getObject();
                     } catch (WTException e) {
                          e.printStackTrace();
                     }
-
+                    
+                    WTContainer container = (WTContainer) objContainer;
+               
+                    Transaction localTransaction = new Transaction();
+               
                     try {
-                         ContainerTeam team = ContainerTeamHelper.service.getContainerTeam((ContainerTeamManaged) container);
-
-                         Enumeration enum1 = ContainerTeamHelper.service.findContainerTeamGroups(team, ContainerTeamHelper.ROLE_GROUPS);
-                         WTGroup group = (WTGroup) enum1.nextElement();
-
-                         if (group.isMember(selectedUser)) {
-                              System.out.println("Hello!");
-                              System.out.println("Hello!");
-                              System.out.println("Hello!");
-                              System.out.println("Hello!");
-                              wt.org.OrganizationServicesHelper.manager.removeMember(group, selectedUser);
-                              wt.fc.PersistenceHelper.manager.save(selectedUser);
+                         localTransaction.start();
+                         
+                         ContainerTeam localContainerTeam = null;
+                         localContainerTeam = ContainerTeamHelper.service.getContainerTeam((ContainerTeamManaged) container);
+                    
+                         Enumeration localEnumeration = ContainerTeamServerHelper.service.findRoles(ContainerTeamReference.newContainerTeamReference(localContainerTeam), selectedUser);
+                         System.out.println("roles to be deleted " + localEnumeration);
+                    
+                         while (localEnumeration.hasMoreElements()) {
+                              Role localRole1 = (Role)localEnumeration.nextElement();
+                              localContainerTeam.deletePrincipalTarget(localRole1, selectedUser);
                          }
-
-                    } catch (WTException e) {
+                         
+                         localTransaction.commit();
+                         localTransaction = null;
+                         
+                         System.out.println("Good delete");
+                    } catch (Exception e) {
                          e.printStackTrace();
+                    } finally {
+                         
+                         if(localTransaction!=null){
+                              System.out.println("Error delete");
+                              localTransaction.rollback();
+                         }
                     }
-
                }
-
+          
           }
-
+     
+          System.out.println("Finish testDeleteUserFromRole");
+     
           doGet(request, response);
      }
      
@@ -85,8 +83,6 @@ public class reportForSelectedUserServlet extends HttpServlet {
           request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/reportForSelectedUser.jsp").forward(request, response);
      }
      
-     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-     
      private static WTUser getUserByName(String userName) {
           try {
                return OrganizationServicesHelper.manager.getUser(userName);
@@ -96,18 +92,4 @@ public class reportForSelectedUserServlet extends HttpServlet {
           return null;
      }
      
-     public List<Role> getTeamRoles(ContainerTeam team, WTUser user) throws WTException {
-          Vector<Role> roles = new Vector<Role>();
-          Enumeration enum1 = ContainerTeamHelper.service.findContainerTeamGroups(team, ContainerTeamHelper.ROLE_GROUPS);
-          while (enum1.hasMoreElements()) {
-               WTGroup group = (WTGroup) enum1.nextElement();
-               if (group.isMember(user)) {
-                    Role role = Role.toRole(group.getName());
-                    if (!roles.contains(role)) {
-                         roles.addElement(role);
-                    }
-               }
-          }
-          return roles;
-     }
 }

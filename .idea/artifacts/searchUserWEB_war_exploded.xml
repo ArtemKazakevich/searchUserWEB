@@ -8,9 +8,8 @@
           <element id="module-output" name="searchUserWEB" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Kartoteka" />
-          <element id="library" level="project" name="Foundation" />
           <element id="library" level="project" name="javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="windchill-11.0.M030.CPS09" />
         </element>
       </element>
     </root>

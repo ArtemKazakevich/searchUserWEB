@@ -1,5 +1,6 @@
 package ext.by.peleng.reports.searchUserWEB;
 
+import wt.fc.Persistable;
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
 import wt.fc.ReferenceFactory;
@@ -58,6 +59,14 @@ public class test2 extends HttpServlet {
                          for (Role role : roles) {
                               ContainerTeamHelper.service.removeMember(team, role, selectedUser);
                               wt.fc.PersistenceHelper.manager.save(team);
+                              wt.fc.PersistenceHelper.manager.save((Persistable) role);
+     
+                              System.out.println("Hello!!!");
+                              System.out.println(team);
+                              System.out.println(role);
+                              System.out.println(selectedUser);
+                              System.out.println("Hello!!!");
+     
                          }
                          
                     } catch (WTException e) {

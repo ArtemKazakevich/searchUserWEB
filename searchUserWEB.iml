@@ -19,9 +19,8 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="Kartoteka" level="project" />
     <orderEntry type="library" name="javax.servlet:jstl:1.2" level="project" />
-    <orderEntry type="library" name="Foundation" level="project" />
     <orderEntry type="library" name="jstl-1.2-sources" level="project" />
+    <orderEntry type="library" name="windchill-11.0.M030.CPS09" level="project" />
   </component>
 </module>

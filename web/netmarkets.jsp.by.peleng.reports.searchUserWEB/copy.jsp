@@ -144,6 +144,10 @@
 
     <h3>Пользователь <b><%=selectedUser.getFullName().replace(",", "")%></b> не имеет доступа к контекстам.</h3>
 
+    <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search">
+        <button><span>На главную</span></button>
+    </form>
+
     <%
         }
     %>

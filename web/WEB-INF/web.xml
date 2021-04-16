@@ -15,6 +15,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>searchGroupServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.searchGroupServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>searchGroupServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/searchGroup</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>usersServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.usersServlet</servlet-class>
     </servlet>
@@ -22,6 +31,16 @@
         <servlet-name>usersServlet</servlet-name>
         <url-pattern>/servlet/searchUserWEB/users</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>groupsServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.groupsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>groupsServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/groups</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>reportForSelectedUserServlet</servlet-name>

@@ -77,8 +77,6 @@ public class reportForSelectedUserServlet extends HttpServlet {
      }
      
      protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//          String selectedUser = (String) request.getSession().getAttribute("selectedUser");
-//          request.setAttribute("selectedUser", selectedUser);
           
           request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/reportForSelectedUser.jsp").forward(request, response);
      }

@@ -10,14 +10,14 @@
 
 <body>
 
-<c:if test="${flag == true}">
+<c:if test="${flagGroup == true}">
     <div>
-        <form method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/users">
+        <form method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/groups">
             <label>
-                <select name="selectedUser" size="5" required>
+                <select name="selectedGroup" size="5" required>
 
-                    <c:forEach items="${users}" var="u">
-                        <option value="${u.getName()}">${u.getFullName().replace(",", "")}</option>
+                    <c:forEach items="${groups}" var="g">
+                        <option value="${g.getName()}">${g.getName()}</option>
                     </c:forEach>
 
                 </select>
@@ -28,9 +28,9 @@
     </div>
 </c:if>
 
-<c:if test="${flag == false}">
-    <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search">
-        <h2>Пользователя не существует.</h2>
+<c:if test="${flagGroup == false}">
+    <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
+        <h2>Группы не существует.</h2>
         <button><span>На главную </span></button>
     </form>
 </c:if>

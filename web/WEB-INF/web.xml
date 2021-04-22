@@ -6,6 +6,15 @@
          version="4.0">
 
     <servlet>
+        <servlet-name>indexServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.indexServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>indexServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/index</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>searchServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.searchServlet</servlet-class>
     </servlet>
@@ -41,7 +50,6 @@
         <url-pattern>/servlet/searchUserWEB/groups</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>reportForSelectedUserServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.reportForSelectedUserServlet</servlet-class>
@@ -50,4 +58,14 @@
         <servlet-name>reportForSelectedUserServlet</servlet-name>
         <url-pattern>/servlet/searchUserWEB/reportForSelectedUserServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>reportForSelectedGroupServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.reportForSelectedGroupServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>reportForSelectedGroupServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/reportForSelectedGroupServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

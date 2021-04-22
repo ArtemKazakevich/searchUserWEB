@@ -71,7 +71,7 @@
 
     if (!containersWithSelectedUser.isEmpty()) {
 %>
-<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search">
+<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
     <button><span>На главную</span></button>
 </form>
 
@@ -144,7 +144,7 @@
 
     <h3>Пользователь <b><%=selectedUser.getFullName().replace(",", "")%></b> не имеет доступа к контекстам.</h3>
 
-    <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search">
+    <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
         <button><span>На главную</span></button>
     </form>
 

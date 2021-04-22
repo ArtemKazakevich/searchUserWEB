@@ -40,24 +40,24 @@ public class groupsServlet extends HttpServlet {
                request.getSession().setAttribute("flagGroup", false);
           }
           
-          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/users.jsp").forward(request, response);
+          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/groups.jsp").forward(request, response);
      }
      
      private static ArrayList<WTGroup> findGroupByLastName(String groupName) {
           ArrayList<WTGroup> groups = new ArrayList<>();
+          
           try {
                QuerySpec querySpec = new QuerySpec(WTGroup.class);
-               SearchCondition searchCondition = new SearchCondition(WTGroup.class, WTGroup.NAME, SearchCondition.EQUAL, groupName, false);
+               SearchCondition searchCondition = new SearchCondition(WTGroup.class, WTGroup.NAME, SearchCondition.LIKE, groupName.replace("*","%"), false);
                querySpec.appendWhere(searchCondition, null);
-               QueryResult queryResult = PersistenceHelper.manager.find(querySpec);
+               QueryResult queryResult = PersistenceHelper.manager.find((StatementSpec) querySpec);
                
-               //???
                while (queryResult.hasMoreElements()) {
                     WTGroup group = (WTGroup) queryResult.nextElement();
+          
                     if (!group.isDisabled()) {
                          groups.add(group);
                     }
-                    
                }
           } catch (WTException e) {
                e.printStackTrace();

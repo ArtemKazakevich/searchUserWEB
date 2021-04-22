@@ -29,7 +29,7 @@
     </c:if>
 
     <c:if test="${flag == false}">
-        <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search">
+        <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
             <h2>Пользователя не существует.</h2>
             <button><span>На главную </span></button>
         </form>

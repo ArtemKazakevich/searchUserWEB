@@ -9,7 +9,7 @@ html {
 
 body {
     margin: 3% 5% auto;
-    padding: 0 10%;
+    padding: 0 5%;
     background: #ebe8e8;
     text-align: center;
 }
@@ -90,6 +90,7 @@ tr:hover td {
 
 th:first-child {
     border-top-left-radius: 10px;
+    width: 5%;
 }
 
 th:last-child {

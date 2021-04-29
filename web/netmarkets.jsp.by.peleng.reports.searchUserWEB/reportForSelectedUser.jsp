@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%@ page import="java.util.*" %>
 <%@ page import="wt.util.WTException" %>
 <%@ page import="wt.inf.container.WTContainer" %>
 <%@ page import="wt.inf.team.ContainerTeam" %>
@@ -33,7 +34,7 @@
 <head>
     <title>Search User</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/reportForSelectedUserStyle.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/reportForSelectedUserStyle.css?ts=<?=time()?">
 
     <script type="text/javascript">
         var checked = false;
@@ -61,6 +62,8 @@
     List<WTContainer> containers = getAllContainersInWindchill();
     Map<WTContainer, HashSet<Role>> containersWithSelectedUser = new HashMap<WTContainer, HashSet<Role>>();
 
+    int number = 0;
+
     for (WTContainer container : containers) {
         ContainerTeamManaged teamManaged = (ContainerTeamManaged) container;
         Set<Role> roles = getContainerTeamRolesWithSelectedUser(teamManaged, selectedUser);
@@ -77,13 +80,14 @@
 
 <form id="frm1" method="post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/reportForSelectedUserServlet">
     <button><span>Удалить выбранное</span></button>
-    <table>
+    <table id="data">
         <caption>Изделия, к которым имеет доступ <%=selectedUser.getFullName().replace(",", "")%></caption>
         <tr>
-            <th>Изделие</th>
+            <th>№</th>
+            <th>Изделия (<span id="num"></span>)</th>
             <th>Роль</th>
             <th>
-                Выбрать/отменить все
+                Выбрать
                 <br>
                 <label class="container">
                     <input type="checkbox" onclick="checkedAll();" name="checkAll"/>
@@ -106,9 +110,14 @@
                 }
 
                 for (Role role : roles) {
+
                     if (isFirstElement) {
+                        number++;
         %>
         <tr>
+            <td>
+                <%=number%>
+            </td>
             <td>
                 <a href="https://wch.peleng.jsc.local/Windchill/app/#ptc1/library/listTeam?oid=<%=refFact.getReferenceString(container)%>" target="_blank"><%=container.getName()%></a>
             </td>
@@ -118,10 +127,11 @@
             %>
         <tr>
             <td></td>
+            <td></td>
             <%
                 }
             %>
-            <td><%=role.getDisplay()%></td>
+            <td><%=role.getDisplay(new Locale("ru", "RU"))%></td>
             <td>
                 <label class="container">
                     <input type="checkbox" name="id" value="<%=oid%>">
@@ -135,6 +145,10 @@
         %>
 
     </table>
+
+    <script>
+        document.getElementById("num").innerHTML = <%=number%>;
+    </script>
 
     <%
 

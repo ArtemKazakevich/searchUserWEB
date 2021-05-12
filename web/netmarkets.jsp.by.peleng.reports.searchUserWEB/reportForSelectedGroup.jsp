@@ -33,6 +33,10 @@
             border-right: none;
             width: 35%;
         }
+
+        table {
+            margin-bottom: 5%;
+        }
     </style>
 </head>
 

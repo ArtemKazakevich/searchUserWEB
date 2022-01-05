@@ -7,25 +7,27 @@
 
     <servlet>
         <servlet-name>indexServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.indexServlet</servlet-class>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.IndexServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>indexServlet</servlet-name>
         <url-pattern>/servlet/searchUserWEB/index</url-pattern>
     </servlet-mapping>
 
+    <!--Search-->
+
     <servlet>
-        <servlet-name>searchServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.searchServlet</servlet-class>
+        <servlet-name>searchUserServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.search.SearchUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>searchServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/search</url-pattern>
+        <servlet-name>searchUserServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/searchUser</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>searchGroupServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.searchGroupServlet</servlet-class>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.search.SearchGroupServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>searchGroupServlet</servlet-name>
@@ -34,7 +36,7 @@
 
     <servlet>
         <servlet-name>usersServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.usersServlet</servlet-class>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.search.UsersServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>usersServlet</servlet-name>
@@ -43,7 +45,7 @@
 
     <servlet>
         <servlet-name>groupsServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.groupsServlet</servlet-class>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.search.GroupsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>groupsServlet</servlet-name>
@@ -52,7 +54,7 @@
 
     <servlet>
         <servlet-name>reportForSelectedUserServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.reportForSelectedUserServlet</servlet-class>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.search.ReportForSelectedUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>reportForSelectedUserServlet</servlet-name>
@@ -61,11 +63,31 @@
 
     <servlet>
         <servlet-name>reportForSelectedGroupServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.reportForSelectedGroupServlet</servlet-class>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.search.ReportForSelectedGroupServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>reportForSelectedGroupServlet</servlet-name>
         <url-pattern>/servlet/searchUserWEB/reportForSelectedGroupServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--Add-->
+
+    <servlet>
+        <servlet-name>SearchUserTestServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.add.SearchUserTestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchUserTestServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/searchUserTest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchGroupTestServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.add.SearchGroupTestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchGroupTestServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/searchGroupTest</url-pattern>
     </servlet-mapping>
 
 </web-app>

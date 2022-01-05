@@ -1,4 +1,4 @@
-package ext.by.peleng.reports.searchUserWEB;
+package ext.by.peleng.reports.searchUserWEB.search;
 
 import wt.inf.container.WTContainer;
 import wt.inf.team.*;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
-public class reportForSelectedUserServlet extends HttpServlet {
+public class ReportForSelectedUserServlet extends HttpServlet {
      
      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
      
@@ -78,7 +78,7 @@ public class reportForSelectedUserServlet extends HttpServlet {
      
      protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
           
-          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/reportForSelectedUser.jsp").forward(request, response);
+          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/search/reportForSelectedUser.jsp").forward(request, response);
      }
      
      private static WTUser getUserByName(String userName) {

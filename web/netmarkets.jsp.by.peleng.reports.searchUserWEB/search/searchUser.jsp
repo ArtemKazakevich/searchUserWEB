@@ -9,7 +9,7 @@
 
     <body>
         <div>
-            <form method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search">
+            <form method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/searchUser">
                 <h3>Введите фамилию:</h3>
                 <label>
                     <input type="text" name="lastName" placeholder="Иванов*" autocomplete="off" required>

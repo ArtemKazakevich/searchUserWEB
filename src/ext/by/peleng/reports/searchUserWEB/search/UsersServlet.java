@@ -1,4 +1,4 @@
-package ext.by.peleng.reports.searchUserWEB;
+package ext.by.peleng.reports.searchUserWEB.search;
 
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class usersServlet extends HttpServlet {
+public class UsersServlet extends HttpServlet {
      
      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
           request.setCharacterEncoding("UTF-8");
@@ -39,7 +39,7 @@ public class usersServlet extends HttpServlet {
                request.getSession().setAttribute("flag", false);
           }
           
-          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/users.jsp").forward(request, response);
+          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/search/users.jsp").forward(request, response);
      }
      
      private static ArrayList<WTUser> findUserByLastName(String userLastName) {

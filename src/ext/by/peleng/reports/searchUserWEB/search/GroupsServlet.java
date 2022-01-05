@@ -1,4 +1,4 @@
-package ext.by.peleng.reports.searchUserWEB;
+package ext.by.peleng.reports.searchUserWEB.search;
 
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class groupsServlet extends HttpServlet {
+public class GroupsServlet extends HttpServlet {
      
      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
           request.setCharacterEncoding("UTF-8");
@@ -40,7 +40,7 @@ public class groupsServlet extends HttpServlet {
                request.getSession().setAttribute("flagGroup", false);
           }
           
-          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/groups.jsp").forward(request, response);
+          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/search/groups.jsp").forward(request, response);
      }
      
      private static ArrayList<WTGroup> findGroupByLastName(String groupName) {

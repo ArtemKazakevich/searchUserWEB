@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "SearchGroupTestServlet", urlPatterns = "/servlet/searchUserWEB/searchGroupTest")
-public class SearchGroupTestServlet extends HttpServlet {
+public class SearchGroupServletToAdd extends HttpServlet {
      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
           
      }

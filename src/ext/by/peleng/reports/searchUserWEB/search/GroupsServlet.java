@@ -25,7 +25,7 @@ public class GroupsServlet extends HttpServlet {
           String selectedGroup = request.getParameter("selectedGroup");
           request.getSession().setAttribute("selectedGroup", selectedGroup);
      
-          String path = request.getContextPath() + "/servlet/searchUserWEB/reportForSelectedGroupServlet";
+          String path = request.getContextPath() + "/servlet/searchUserWEB/search/reportForSelectedGroupServlet";
           response.sendRedirect(path);
      }
      

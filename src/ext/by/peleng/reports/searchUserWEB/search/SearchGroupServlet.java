@@ -14,7 +14,7 @@ public class SearchGroupServlet extends HttpServlet {
           String groupName = request.getParameter("groupName");
           request.getSession().setAttribute("groupName", groupName);
      
-          String path = request.getContextPath() + "/servlet/searchUserWEB/groups";
+          String path = request.getContextPath() + "/servlet/searchUserWEB/search/groups";
           response.sendRedirect(path);
      }
      

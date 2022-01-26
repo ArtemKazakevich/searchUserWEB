@@ -20,6 +20,13 @@ form {
     font-weight: bold;
 }
 
+.box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
 h3 {
     font-size: 28px;
     font-weight: bold;

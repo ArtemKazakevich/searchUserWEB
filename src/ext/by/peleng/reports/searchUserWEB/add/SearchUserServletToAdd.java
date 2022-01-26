@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class SearchUserTestServlet extends HttpServlet {
+public class SearchUserServletToAdd extends HttpServlet {
      
      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
           request.setCharacterEncoding("UTF-8");
@@ -37,7 +37,7 @@ public class SearchUserTestServlet extends HttpServlet {
           
           request.getSession().setAttribute("userList", userList);
           
-          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/add/searchUserTest.jsp").forward(request, response);
+          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/add/searchUserToAdd.jsp").forward(request, response);
      }
      
      // получаем всех пользователей

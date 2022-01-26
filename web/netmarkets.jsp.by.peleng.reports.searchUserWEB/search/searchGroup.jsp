@@ -3,12 +3,12 @@
 <head>
     <title>Search Group</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/searchStyle.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/search/searchStyle.css">
 </head>
 
 <body>
 <div>
-    <form method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/searchGroup">
+    <form method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search/searchGroup">
         <h3>Введите группу:</h3>
         <label>
             <input type="text" name="groupName" placeholder="Инженер*" autocomplete="off" required>

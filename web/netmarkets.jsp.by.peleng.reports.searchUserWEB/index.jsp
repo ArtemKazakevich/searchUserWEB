@@ -8,25 +8,30 @@
 <body>
 
 <div>
-    <div>
-        <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/searchUser">
-            <button><span>Искать пользователя </span></button>
-        </a>
+    <div class="box">
+        <div>
+            <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/search/searchUser">
+                <button><span>Искать пользователя </span></button>
+            </a>
+        </div>
+        <div>
+            <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/search/searchGroup">
+                <button><span>Искать группу </span></button>
+            </a>
+        </div>
     </div>
-    <div>
-        <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/searchGroup">
-            <button><span>Искать группу </span></button>
-        </a>
-    </div>
-    <div>
-        <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/searchUserTest">
-            <button><span>Добавить пользователя </span></button>
-        </a>
-    </div>
-    <div>
-        <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/searchGroupTest">
-            <button><span>Добавить группу </span></button>
-        </a>
+
+    <div class="box">
+        <div>
+            <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/add/searchUserToAdd">
+                <button><span>Добавить пользователя </span></button>
+            </a>
+        </div>
+        <div>
+            <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/add/searchGroupToAdd">
+                <button><span>Добавить группу </span></button>
+            </a>
+        </div>
     </div>
 </div>
 

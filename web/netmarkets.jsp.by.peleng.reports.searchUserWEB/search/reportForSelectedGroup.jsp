@@ -26,7 +26,7 @@
 <head>
     <title>Search Group</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/reportForSelectedUserStyle.css?ts=<?=time()?">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/search/reportForSelectedUserStyle.css?ts=<?=time()?">
     <style>
         th:last-child {
             border-top-right-radius: 10px;

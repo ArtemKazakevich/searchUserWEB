@@ -5,14 +5,14 @@
     <head>
         <title>Search User</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/usersStyle.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/search/usersStyle.css">
     </head>
 
     <body>
 
     <c:if test="${flag == true}">
         <div>
-            <form method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/users">
+            <form method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search/users">
                 <label>
                     <select name="selectedUser" size="5" required>
 

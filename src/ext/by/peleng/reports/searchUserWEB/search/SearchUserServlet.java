@@ -14,7 +14,7 @@ public class SearchUserServlet extends HttpServlet {
           String lastName = request.getParameter("lastName");
           request.getSession().setAttribute("lastName", lastName);
      
-          String path = request.getContextPath() + "/servlet/searchUserWEB/users";
+          String path = request.getContextPath() + "/servlet/searchUserWEB/search/users";
           response.sendRedirect(path);
      }
      

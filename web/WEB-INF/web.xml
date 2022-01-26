@@ -6,88 +6,88 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>indexServlet</servlet-name>
+        <servlet-name>IndexServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.IndexServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>indexServlet</servlet-name>
+        <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/servlet/searchUserWEB/index</url-pattern>
     </servlet-mapping>
 
     <!--Search-->
 
     <servlet>
-        <servlet-name>searchUserServlet</servlet-name>
+        <servlet-name>SearchUserServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.search.SearchUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>searchUserServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/searchUser</url-pattern>
+        <servlet-name>SearchUserServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/search/searchUser</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>searchGroupServlet</servlet-name>
+        <servlet-name>SearchGroupServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.search.SearchGroupServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>searchGroupServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/searchGroup</url-pattern>
+        <servlet-name>SearchGroupServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/search/searchGroup</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>usersServlet</servlet-name>
+        <servlet-name>UsersServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.search.UsersServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>usersServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/users</url-pattern>
+        <servlet-name>UsersServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/search/users</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>groupsServlet</servlet-name>
+        <servlet-name>GroupsServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.search.GroupsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>groupsServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/groups</url-pattern>
+        <servlet-name>GroupsServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/search/groups</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>reportForSelectedUserServlet</servlet-name>
+        <servlet-name>ReportForSelectedUserServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.search.ReportForSelectedUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>reportForSelectedUserServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/reportForSelectedUserServlet</url-pattern>
+        <servlet-name>ReportForSelectedUserServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/search/reportForSelectedUserServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>reportForSelectedGroupServlet</servlet-name>
+        <servlet-name>ReportForSelectedGroupServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.search.ReportForSelectedGroupServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>reportForSelectedGroupServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/reportForSelectedGroupServlet</url-pattern>
+        <servlet-name>ReportForSelectedGroupServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/search/reportForSelectedGroupServlet</url-pattern>
     </servlet-mapping>
 
     <!--Add-->
 
     <servlet>
-        <servlet-name>SearchUserTestServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.add.SearchUserTestServlet</servlet-class>
+        <servlet-name>SearchUserServletToAdd</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.add.SearchUserServletToAdd</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SearchUserTestServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/searchUserTest</url-pattern>
+        <servlet-name>SearchUserServletToAdd</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/add/searchUserToAdd</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>SearchGroupTestServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.add.SearchGroupTestServlet</servlet-class>
+        <servlet-name>SearchGroupServletToAdd</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.add.SearchGroupServletToAdd</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SearchGroupTestServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/searchGroupTest</url-pattern>
+        <servlet-name>SearchGroupServletToAdd</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/add/searchGroupToAdd</url-pattern>
     </servlet-mapping>
 
 </web-app>

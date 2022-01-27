@@ -1,16 +1,42 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: kazakevich_av
-  Date: 26.01.2022
-  Time: 13:46
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Search Group</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/add/searchGroupStyle.css">
 </head>
 <body>
+
+<%
+    List<String> groupList = (List<String>) request.getSession().getAttribute("groupList");
+%>
+
+<form method="post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/add/searchGroupToAdd">
+
+    <datalist id="emps">
+        <%
+            for (String s : groupList) {
+        %>
+        <option value="<%=s%>"><%=s%></option>
+        <%
+            }
+        %>
+    </datalist>
+
+    <h3>Введите группу:</h3>
+    <label>
+        <input type="text" name="add_selectedGroup" placeholder="Инженер*" autocomplete="off" required list="emps">
+    </label>
+    <br>
+    <button><span>Ввод </span></button>
+
+</form>
+
+<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
+    <button><span>На главную</span></button>
+</form>
 
 </body>
 </html>

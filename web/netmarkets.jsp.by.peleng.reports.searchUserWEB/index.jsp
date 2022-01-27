@@ -7,14 +7,14 @@
 </head>
 <body>
 
-<div>
+<div class="form">
     <div class="box">
-        <div>
+        <div class="but">
             <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/search/searchUser">
                 <button><span>Искать пользователя </span></button>
             </a>
         </div>
-        <div>
+        <div class="but">
             <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/search/searchGroup">
                 <button><span>Искать группу </span></button>
             </a>
@@ -22,12 +22,12 @@
     </div>
 
     <div class="box">
-        <div>
+        <div class="but">
             <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/add/searchUserToAdd">
                 <button><span>Добавить пользователя </span></button>
             </a>
         </div>
-        <div>
+        <div class="but">
             <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/add/searchGroupToAdd">
                 <button><span>Добавить группу </span></button>
             </a>

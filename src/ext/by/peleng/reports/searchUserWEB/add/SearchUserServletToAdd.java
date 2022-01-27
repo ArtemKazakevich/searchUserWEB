@@ -25,8 +25,8 @@ public class SearchUserServletToAdd extends HttpServlet {
      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
           request.setCharacterEncoding("UTF-8");
           
-          String lastName = request.getParameter("add_lastName");
-          request.getSession().setAttribute("add_lastName", lastName);
+          String add_selectedUser = request.getParameter("add_selectedUser");
+          request.getSession().setAttribute("add_selectedUser", add_selectedUser);
           
           String path = request.getContextPath() + "/servlet/searchUserWEB/add/addUser";
           response.sendRedirect(path);
@@ -34,9 +34,9 @@ public class SearchUserServletToAdd extends HttpServlet {
      
      protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
           List<String> userList = findAllUser();
-          
+
           request.getSession().setAttribute("userList", userList);
-          
+
           request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/add/searchUserToAdd.jsp").forward(request, response);
      }
      

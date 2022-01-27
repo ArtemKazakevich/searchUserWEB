@@ -8,14 +8,14 @@ html {
 }
 
 body {
-    margin: 7% auto;
-    padding: 0 10%;
+    margin: auto;
+    padding: 0 20%;
     background: #ebe8e8;
     text-align: center;
 }
 
-form {
-    margin: 15% auto;
+.form {
+    margin: 30% auto;
     font-size: 26px;
     font-weight: bold;
 }
@@ -27,27 +27,14 @@ form {
     align-items: center;
 }
 
-h3 {
-    font-size: 28px;
-    font-weight: bold;
-}
-
-input {
-    padding: 1.2em;
-    font-size: 20px;
-    color: rgb(85, 85, 85);
-    border: none;
-    width: 50%;
-    border-radius: 5px;
-    box-sizing: border-box;
-    outline: none;
-    background: #FFFFFF;
+.but {
+    margin: 2%;
+    width: 100%;
 }
 
 button {
-    margin-top: 5%;
     background: #66CDAA;
-    padding: 1.5% 5%;
+    padding: 4% 5%;
     font-size: 20px;
     color: #656665;
     font-weight: bold;
@@ -57,6 +44,7 @@ button {
     cursor:pointer;
     outline: none;
     transition: all 0.5s;
+    width: 400px;
 }
 
 button span {

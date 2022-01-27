@@ -90,4 +90,22 @@
         <url-pattern>/servlet/searchUserWEB/add/searchGroupToAdd</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AddUserServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.add.AddUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddUserServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/add/addUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddGroupServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.add.AddGroupServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddGroupServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/add/addGroup</url-pattern>
+    </servlet-mapping>
+
 </web-app>

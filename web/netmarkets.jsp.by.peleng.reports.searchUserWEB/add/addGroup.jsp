@@ -6,11 +6,7 @@
 <%@ page import="wt.inf.team.ContainerTeamHelper" %>
 <%@ page import="wt.inf.team.ContainerTeamManaged" %>
 <%@ page import="wt.project.Role" %>
-<%@ page import="wt.org.WTPrincipalReference" %>
 <%@ page import="wt.inf.team.StandardContainerTeamService" %>
-<%@ page import="wt.org.WTGroup" %>
-<%@ page import="wt.org.OrganizationServicesHelper" %>
-<%@ page import="wt.org.WTPrincipal" %>
 <%@ page import="wt.query.QuerySpec" %>
 <%@ page import="wt.query.QueryException" %>
 <%@ page import="wt.fc.QueryResult" %>
@@ -20,6 +16,7 @@
 <%@ page import="wt.fc.ReferenceFactory" %>
 <%@ page import="java.util.*" %>
 <%@ page import="wt.inf.container.OrgContainer" %>
+<%@ page import="wt.org.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -32,21 +29,40 @@
 <body>
 
 <%
-    WTGroup selectedGroup = getGroupByName((String) request.getSession().getAttribute("add_selectedGroup"));
-    String group = (String) request.getSession().getAttribute("add_selectedGroup");
+    WTGroup selectedGroup = getGroup((String) request.getSession().getAttribute("add_selectedGroup"));
 %>
 
-<p><%=selectedGroup%></p>
-<p><%=group%></p>
+<p>Группа, которую Вы хотите добавить:</p>
+<p><%=selectedGroup.getName()%></p>
+
+<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
+    <button><span>На главную</span></button>
+</form>
 
 <%!
-    private static WTGroup getGroupByName(String groupName) {
+    private WTGroup getGroup(String searchGroup) {
+
+        WTGroup g = null;
+        QuerySpec querySpec;
+        QueryResult qr = null;
         try {
-            return OrganizationServicesHelper.manager.getGroup(groupName);
+            querySpec = new QuerySpec(WTGroup.class);
+            qr = PersistenceHelper.manager.find(querySpec);
         } catch (WTException e) {
             e.printStackTrace();
         }
-        return null;
+
+        while (qr.hasMoreElements()) {
+            WTGroup group = (WTGroup) qr.nextElement();
+
+            if (!group.isDisabled()) {
+                if (searchGroup.equals(group.getName())) {
+                    g = group;
+                }
+            }
+        }
+
+        return g;
     }
 %>
 

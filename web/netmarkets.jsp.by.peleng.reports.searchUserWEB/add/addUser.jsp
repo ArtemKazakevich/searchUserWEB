@@ -40,21 +40,40 @@
 <body>
 
 <%
-    WTUser selectedUser = getUserByName((String) request.getSession().getAttribute("add_selectedUser"));
-    String user = (String) request.getSession().getAttribute("add_selectedUser");
+    WTUser selectedUser = getUser((String) request.getSession().getAttribute("add_selectedUser"));
 %>
 
-<p><%=selectedUser%></p>
-<p><%=user%></p>
+<p>Пользователь, которого Вы хотите добавить:</p>
+<p><%=selectedUser.getFullName().replace(",", "")%></p>
+
+<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
+    <button><span>На главную</span></button>
+</form>
 
 <%!
-    private static WTUser getUserByName(String userName) {
+    private WTUser getUser(String searchUser) {
+
+        WTUser u = null;
+        QuerySpec querySpec;
+        QueryResult qr = null;
         try {
-            return OrganizationServicesHelper.manager.getUser(userName);
+            querySpec = new QuerySpec(WTUser.class);
+            qr = PersistenceHelper.manager.find(querySpec);
         } catch (WTException e) {
             e.printStackTrace();
         }
-        return null;
+
+        while (qr.hasMoreElements()) {
+            WTUser user = (WTUser) qr.nextElement();
+
+            if (!user.isDisabled()) {
+                if (searchUser.equals(user.getFullName().replace(",", ""))) {
+                    u = user;
+                }
+            }
+        }
+
+        return u;
     }
 %>
 

@@ -54,7 +54,10 @@ public class SearchGroupServletToAdd extends HttpServlet {
                WTGroup group = (WTGroup) qr.nextElement();
 
                if (!group.isDisabled()) {
-                    groups.add(group.getName());
+
+                    if (group.getDn() != null & group.getContainerName().equals("PELENG")) {
+                         groups.add(group.getName());
+                    }
                }
           }
 

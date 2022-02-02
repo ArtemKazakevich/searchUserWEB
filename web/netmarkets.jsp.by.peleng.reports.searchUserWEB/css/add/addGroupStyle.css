@@ -2,49 +2,71 @@
     font-family: "Times New Roman", "Times New Roman", Sans-Serif, sans-serif;
 }
 
-input::-webkit-calendar-picker-indicator {
-    opacity: 0;
-}
-
 html {
     font-size: 20px;
     color: #656665;
 }
 
 body {
-    margin: 7% auto;
-    padding: 0 10%;
+    margin: auto;
+    padding: 0 15%;
     background: #ebe8e8;
     text-align: center;
 }
 
-form {
-    margin: 5% auto;
+.form {
+    margin: 3% auto;
     font-size: 26px;
     font-weight: bold;
 }
 
-h3 {
-    font-size: 28px;
-    font-weight: bold;
+.box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.block_input {
+    display: flex;
+    flex-direction: column;
 }
 
 input {
-    padding: 1.2em;
+    margin: 3% 0;
+    padding: 1%;
     font-size: 20px;
     color: rgb(85, 85, 85);
     border: none;
-    width: 50%;
     border-radius: 5px;
     box-sizing: border-box;
     outline: none;
     background: #FFFFFF;
 }
 
-button {
-    margin-top: 5%;
+select {
+    width: 450px;
+    height: 200px;
+    padding: 3%;
+    font-size: 20px;
+    color: rgb(85, 85, 85);
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    background: #FFFFFF;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.button_exit {
+    padding: 2%;
+    margin: 2% 0;
     background: #66CDAA;
-    padding: 1.5% 5%;
     font-size: 20px;
     color: #656665;
     font-weight: bold;
@@ -54,6 +76,23 @@ button {
     cursor:pointer;
     outline: none;
     transition: all 0.5s;
+    width: 300px;
+}
+
+button {
+    background: #66CDAA;
+    padding: 4% 5%;
+    font-size: 20px;
+    color: #656665;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    border: 0;
+    cursor:pointer;
+    outline: none;
+    transition: all 0.5s;
+    width: 250px;
+    margin: 5% 0;
 }
 
 button span {
@@ -85,4 +124,3 @@ button:hover span:after {
     opacity: 1;
     right: 0;
 }
-

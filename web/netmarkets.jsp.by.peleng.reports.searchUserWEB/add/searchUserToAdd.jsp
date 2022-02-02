@@ -39,7 +39,5 @@
     <button><span>На главную</span></button>
 </form>
 
-<%--<script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/script.js"></script>--%>
-
 </body>
 </html>

@@ -81,9 +81,11 @@
         </div>
     </div>
 
-    <form class="block_input">
-        <select style="margin-bottom: 30%;" multiple="true" class="product_2"></select>
-        <select multiple="true" class="role_2"></select>
+    <form class="block_input_form" method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/add/addUser">
+        <select style="margin: 10% 0 33%;" multiple="true" class="product_2" name="selectedProductForUser"></select>
+        <select multiple="true" class="role_2" name="selectedRoleForUser"></select>
+        <br>
+        <button class="button_add"><span>Добавить пользователя </span></button>
     </form>
 
 </div>

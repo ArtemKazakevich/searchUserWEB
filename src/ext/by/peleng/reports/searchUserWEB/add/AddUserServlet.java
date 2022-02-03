@@ -29,7 +29,48 @@ import java.util.*;
 
 public class AddUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
+        List<WTContainer> wtContainerList = new ArrayList<>();
+        List<Role> roleList = new ArrayList<>();
+
+        String[] selectedProductForUser = request.getParameterValues("selectedProductForUser");
+        String[] selectedRoleForUser = request.getParameterValues("selectedRoleForUser");
+
+        List<WTContainer> containersList = getAllContainersInWindchill();
+        containersList.sort(Comparator.comparing(_WTContainer::getName));
+
+        Role[] rs = Role.getRoleSet();
+        ArrayList<Role> roles = new ArrayList<>(Arrays.asList(rs));
+        roles.sort(Comparator.comparing((Role o) -> o.getDisplay(new Locale("ru", "RU"))));
+
+        if (selectedProductForUser != null && selectedProductForUser.length > 0) {
+
+            for (WTContainer wtContainer : containersList) {
+                for (String container : selectedProductForUser) {
+                    if (wtContainer.getName().equals(container)) {
+                        wtContainerList.add(wtContainer);
+                    }
+                }
+            }
+        }
+
+        if (selectedRoleForUser != null && selectedRoleForUser.length > 0) {
+
+            for (Role role : roles) {
+                for (String r : selectedRoleForUser) {
+                    if (role.getDisplay(new Locale("ru", "RU")).equals(r)) {
+                        roleList.add(role);
+                    }
+                }
+            }
+        }
+
+        request.getSession().setAttribute("wtContainerList_add", wtContainerList);
+        request.getSession().setAttribute("roleList_add", roleList);
+
+        String path = request.getContextPath() + "/servlet/searchUserWEB/add/finish";
+        response.sendRedirect(path);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,7 +89,7 @@ public class AddUserServlet extends HttpServlet {
     }
 
     private ArrayList<WTContainer> getAllContainersInWindchill() {
-        ArrayList<WTContainer> containers = new ArrayList<WTContainer>();
+        ArrayList<WTContainer> containers = new ArrayList<>();
         try {
             QuerySpec querySpec = new QuerySpec(WTContainer.class);
             QueryResult qr = PersistenceHelper.manager.find(querySpec);

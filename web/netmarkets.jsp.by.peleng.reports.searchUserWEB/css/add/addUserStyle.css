@@ -70,9 +70,10 @@ select {
 }
 
 .button_exit {
-    padding: 2%;
+    padding: 1% 2%;
+    margin: 2% 0 1% 0;
     background: #66CDAA;
-    font-size: 20px;
+    font-size: 15px;
     color: #656665;
     font-weight: bold;
     text-align: center;
@@ -81,8 +82,8 @@ select {
     cursor:pointer;
     outline: none;
     transition: all 0.5s;
-    width: 300px;
 }
+
 .button_add {
     padding: 2%;
     background: #66CDAA;

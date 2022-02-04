@@ -48,6 +48,10 @@
 <p>Пользователь, которого Вы хотите добавить: <%=selectedUser.getFullName().replace(",", "")%>
 </p>
 
+<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
+    <button class="button_exit"><span>На главную</span></button>
+</form>
+
 <div class="box form">
 
     <div class="block_input">
@@ -82,17 +86,13 @@
     </div>
 
     <form class="block_input_form" method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/add/addUser">
-        <select style="margin: 10% 0 33%;" multiple="true" class="product_2" name="selectedProductForUser"></select>
-        <select multiple="true" class="role_2" name="selectedRoleForUser"></select>
+        <select id="select_1" style="margin: 10% 0 33%;" multiple="true" class="product_2" name="selectedProductForUser"></select>
+        <select id="select_2" multiple="true" class="role_2" name="selectedRoleForUser"></select>
         <br>
-        <button class="button_add"><span>Добавить пользователя </span></button>
+        <button id="js-button-add" class="button_add"><span>Добавить пользователя </span></button>
     </form>
 
 </div>
-
-<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
-    <button class="button_exit"><span>На главную</span></button>
-</form>
 
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/add/addUserScript.js"></script>
 

@@ -1,4 +1,4 @@
-<!--Изделие-->
+<!--Изделие. Для фильтрации option через input-->
 let filterProduct = function () {
     let input = document.getElementById('inputProduct');
 
@@ -20,7 +20,7 @@ let filterProduct = function () {
 filterProduct();
 
 
-<!--Изделие-->
+<!--Изделие. script для работы с кнопками удаления и добавления из одного select в другой-->
 $('.addProduct').on('click', function () {
     var options = $('select.product_1 option:selected').sort().clone();
     $('select.product_2').append(options);
@@ -37,7 +37,7 @@ $('.removeAllProduct').on('click', function () {
 });
 
 
-<!--Роль-->
+<!--Роль. Для фильтрации option через input-->
 let filterRole = function () {
     let input = document.getElementById('inputRole');
 
@@ -58,7 +58,7 @@ let filterRole = function () {
 };
 filterRole();
 
-<!--Роль-->
+<!--Роль. script для работы с кнопками удаления и добавления из одного select в другой-->
 $('.addRole').on('click', function () {
     var options = $('select.role_1 option:selected').sort().clone();
     $('select.role_2').append(options);
@@ -72,4 +72,11 @@ $('.removeRole').on('click', function () {
 });
 $('.removeAllRole').on('click', function () {
     $('select.role_2').empty();
+});
+
+<!--Выделение добавленных option в форме, для отправки в сервлет-->
+// Выбрать все
+$('#js-button-add').click(function(){
+    $('#select_1 option').prop('selected', true);
+    $('#select_2 option').prop('selected', true);
 });

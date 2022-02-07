@@ -42,5 +42,9 @@
     }
 %>
 
+<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
+    <button class="button_exit"><span>На главную</span></button>
+</form>
+
 </body>
 </html>

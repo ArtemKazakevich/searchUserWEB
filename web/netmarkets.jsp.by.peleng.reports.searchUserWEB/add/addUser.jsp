@@ -42,7 +42,6 @@
 
 <%
     WTUser selectedUser = getUser((String) request.getSession().getAttribute("add_selectedUser"));
-    Locale locale = new Locale("ru", "RU");
 %>
 
 <p>Пользователь, которого Вы хотите добавить: <%=selectedUser.getFullName().replace(",", "")%>
@@ -94,7 +93,7 @@
 
 </div>
 
-<script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/add/addUserScript.js"></script>
+<script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/add/addScript.js"></script>
 
 <%!
     private WTUser getUser(String searchUser) {

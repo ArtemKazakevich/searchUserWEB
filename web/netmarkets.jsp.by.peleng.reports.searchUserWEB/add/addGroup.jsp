@@ -36,6 +36,10 @@
 <p>Группа, которую Вы хотите добавить: <%=selectedGroup.getName()%>
 </p>
 
+<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
+    <button class="button_exit"><span>На главную</span></button>
+</form>
+
 <div class="box form">
 
     <div class="block_input">
@@ -69,18 +73,16 @@
         </div>
     </div>
 
-    <form class="block_input">
-        <select style="margin-bottom: 30%;" multiple="true" class="product_2"></select>
-        <select multiple="true" class="role_2"></select>
+    <form class="block_input_form" method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/add/addGroup">
+        <select id="select_1" style="margin: 10% 0 33%;" multiple="true" class="product_2" name="selectedProductForGroup"></select>
+        <select id="select_2" multiple="true" class="role_2" name="selectedRoleForGroup"></select>
+        <br>
+        <button id="js-button-add" class="button_add"><span>Добавить группу </span></button>
     </form>
 
 </div>
 
-<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
-    <button class="button_exit"><span>На главную</span></button>
-</form>
-
-<script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/add/addGroupScript.js"></script>
+<script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/add/addScript.js"></script>
 
 <%!
     private WTGroup getGroup(String searchGroup) {

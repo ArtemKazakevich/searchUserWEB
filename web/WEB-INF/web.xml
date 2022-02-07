@@ -117,4 +117,13 @@
         <url-pattern>/servlet/searchUserWEB/add/finish</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>FinishGroupServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.add.FinishGroupServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FinishGroupServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/add/finishGroup</url-pattern>
+    </servlet-mapping>
+
 </web-app>

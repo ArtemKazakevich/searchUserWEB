@@ -3,12 +3,10 @@ package ext.by.peleng.reports.searchUserWEB.add;
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
 import wt.org.WTGroup;
-import wt.org.WTUser;
 import wt.query.QuerySpec;
 import wt.util.WTException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

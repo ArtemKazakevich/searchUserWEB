@@ -3,21 +3,16 @@ package ext.by.peleng.reports.searchUserWEB.add;
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
 import wt.org.WTUser;
-import wt.pds.StatementSpec;
-import wt.query.QueryException;
 import wt.query.QuerySpec;
-import wt.query.SearchCondition;
 import wt.util.WTException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class SearchUserServletToAdd extends HttpServlet {

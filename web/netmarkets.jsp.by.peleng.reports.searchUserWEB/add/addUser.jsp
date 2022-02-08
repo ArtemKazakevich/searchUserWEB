@@ -1,34 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page import="java.util.*" %>
 <%@ page import="wt.util.WTException" %>
-<%@ page import="wt.inf.container.WTContainer" %>
-<%@ page import="wt.inf.team.ContainerTeam" %>
-<%@ page import="wt.inf.team.ContainerTeamHelper" %>
-<%@ page import="wt.inf.team.ContainerTeamManaged" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="wt.project.Role" %>
-<%@ page import="wt.org.WTPrincipalReference" %>
-<%@ page import="wt.inf.team.StandardContainerTeamService" %>
-<%@ page import="wt.org.WTGroup" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Vector" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Enumeration" %>
-<%@ page import="wt.org.OrganizationServicesHelper" %>
-<%@ page import="wt.org.WTPrincipal" %>
 <%@ page import="wt.org.WTUser" %>
 <%@ page import="wt.query.QuerySpec" %>
-<%@ page import="wt.query.QueryException" %>
 <%@ page import="wt.fc.QueryResult" %>
 <%@ page import="wt.fc.PersistenceHelper" %>
-<%@ page import="wt.pdmlink.PDMLinkProduct" %>
-<%@ page import="wt.inf.library.WTLibrary" %>
-<%@ page import="java.util.HashSet" %>
-<%@ page import="java.util.Set" %>
-<%@ page import="wt.fc.ReferenceFactory" %>
 
 <html>
 <head>
@@ -85,8 +62,8 @@
     </div>
 
     <form class="block_input_form" method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/add/addUser">
-        <select id="select_1" style="margin: 10% 0 33%;" multiple="true" class="product_2" name="selectedProductForUser"></select>
-        <select id="select_2" multiple="true" class="role_2" name="selectedRoleForUser"></select>
+        <select id="select_1" style="margin: 10% 0 33%;" multiple="true" class="product_2" name="selectedProductForUser" required></select>
+        <select id="select_2" multiple="true" class="role_2" name="selectedRoleForUser" required></select>
         <br>
         <button id="js-button-add" class="button_add"><span>Добавить пользователя </span></button>
     </form>

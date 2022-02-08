@@ -3,7 +3,6 @@ package ext.by.peleng.reports.searchUserWEB.search;
 import wt.fc.PersistenceHelper;
 import wt.fc.QueryResult;
 import wt.org.WTGroup;
-import wt.org.WTUser;
 import wt.pds.StatementSpec;
 import wt.query.QuerySpec;
 import wt.query.SearchCondition;

@@ -9,13 +9,13 @@ html {
 
 body {
     margin: auto;
-    padding: 0 20%;
+    padding: 0 15%;
     background: #ebe8e8;
     text-align: center;
 }
 
 .form {
-    margin: 23% auto;
+    margin: 3% auto;
     font-size: 26px;
     font-weight: bold;
 }
@@ -27,14 +27,77 @@ body {
     align-items: center;
 }
 
-.but {
-    margin: 2%;
-    width: 100%;
+.block_input {
+    display: flex;
+    flex-direction: column;
 }
 
-.delete {
-    margin-top: 3%;
-    width: 100%;
+.block_input_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    margin: 3% 0;
+    padding: 1%;
+    font-size: 20px;
+    color: rgb(85, 85, 85);
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    background: #FFFFFF;
+}
+
+select {
+    width: 450px;
+    height: 200px;
+    padding: 3%;
+    font-size: 15px;
+    color: rgb(85, 85, 85);
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    background: #FFFFFF;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.button_exit {
+    padding: 1% 2%;
+    margin: 2% 0 1% 0;
+    background: #66CDAA;
+    font-size: 15px;
+    color: #656665;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    border: 0;
+    cursor:pointer;
+    outline: none;
+    transition: all 0.5s;
+}
+
+.button_add {
+    width: 200px;
+    padding: 2%;
+    background: #66CDAA;
+    font-size: 15px;
+    color: #656665;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    border: 0;
+    cursor:pointer;
+    outline: none;
+    transition: all 0.5s;
+    margin: 0;
 }
 
 button {
@@ -49,22 +112,8 @@ button {
     cursor:pointer;
     outline: none;
     transition: all 0.5s;
-    width: 400px;
-}
-
-.button_delete {
-    background: #66CDAA;
-    padding: 2%;
-    font-size: 20px;
-    color: #656665;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 10px;
-    border: 0;
-    cursor:pointer;
-    outline: none;
-    transition: all 0.5s;
-    width: 400px;
+    width: 250px;
+    margin: 5% 0;
 }
 
 button span {
@@ -96,3 +145,4 @@ button:hover span:after {
     opacity: 1;
     right: 0;
 }
+

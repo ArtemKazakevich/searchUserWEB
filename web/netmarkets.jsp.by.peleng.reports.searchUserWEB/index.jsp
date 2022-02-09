@@ -33,6 +33,14 @@
             </a>
         </div>
     </div>
+
+    <div class="box">
+        <div class="delete">
+            <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/role/addOrDeleteRoleServlet">
+                <button class="button_delete"><span>Добавить/Удалить роль </span></button>
+            </a>
+        </div>
+    </div>
 </div>
 
 </body>

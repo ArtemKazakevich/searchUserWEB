@@ -78,7 +78,7 @@
     <button><span>На главную</span></button>
 </form>
 
-<form id="frm1" method="post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/reportForSelectedUserServlet">
+<form id="frm1" method="post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search/reportForSelectedUserServlet">
     <button><span>Удалить выбранное</span></button>
     <table id="data">
         <caption>Изделия, к которым имеет доступ <%=selectedUser.getFullName().replace(",", "")%></caption>

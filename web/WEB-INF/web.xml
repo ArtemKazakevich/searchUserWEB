@@ -117,4 +117,15 @@
         <url-pattern>/servlet/searchUserWEB/add/finish</url-pattern>
     </servlet-mapping>
 
+    <!--Role-->
+
+    <servlet>
+        <servlet-name>AddOrDeleteRoleServlet</servlet-name>
+        <servlet-class>ext.by.peleng.reports.searchUserWEB.role.AddOrDeleteRoleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddOrDeleteRoleServlet</servlet-name>
+        <url-pattern>/servlet/searchUserWEB/role/addOrDeleteRoleServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

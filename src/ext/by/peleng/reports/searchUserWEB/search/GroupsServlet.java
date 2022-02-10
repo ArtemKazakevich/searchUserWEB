@@ -39,7 +39,7 @@ public class GroupsServlet extends HttpServlet {
                request.getSession().setAttribute("flagGroup", false);
           }
           
-          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/search/groups.jsp").forward(request, response);
+          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/jsp/search/groups.jsp").forward(request, response);
      }
      
      private static ArrayList<WTGroup> findGroupByLastName(String groupName) {

@@ -1,13 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Delete role</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/role/addOrDeleteRoleStyle.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/spinner.css">
     <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/jsQuery/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+
+<div id="page-preloader" class="preloader">
+    <div class="loader" role="status">
+        <span>Загрузка...</span>
+    </div>
+</div>
 
 <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
     <button class="button_exit"><span>На главную</span></button>
@@ -46,12 +54,12 @@
         </div>
     </div>
 
-    <form id="formBlock" class="block_input_form" method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/add/addUser">
+    <form id="formBlock" class="block_input_form" method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/role/addOrDeleteRoleServlet">
         <select id="select_1" style="margin: 3% 0 30%;" multiple="true" class="product_2" name="selectedProductForRole" required></select>
         <select id="select_2" multiple="true" class="role_2" name="selectedRoleForRole" required></select>
         <div style="margin-top: 5%;">
-            <button id="js-button-add_1" class="button_add"><span>Удалить роль </span></button>
-            <button id="js-button-add_2" class="button_add"><span>Добавить роль </span></button>
+            <button id="js-button-add_1" class="button_add js-button"><span>Удалить роль </span></button>
+            <button id="js-button-add_2" class="button_add js-button"><span>Добавить роль </span></button>
         </div>
     </form>
 
@@ -59,6 +67,7 @@
 
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/add/addScript.js"></script>
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/role/addOrDeleteRoleServlet.js"></script>
+<script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/spinner.js"></script>
 
 </body>
 </html>

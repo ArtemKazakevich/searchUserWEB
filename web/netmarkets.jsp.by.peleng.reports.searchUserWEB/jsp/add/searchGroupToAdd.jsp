@@ -6,8 +6,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/add/searchGroupStyle.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/spinner.css">
 </head>
 <body>
+
+<div id="page-preloader" class="preloader">
+    <div class="loader" role="status">
+        <span>Загрузка...</span>
+    </div>
+</div>
 
 <%
     List<String> groupList = (List<String>) request.getSession().getAttribute("groupList");
@@ -37,6 +44,8 @@
 <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
     <button><span>На главную</span></button>
 </form>
+
+<script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/spinner.js"></script>
 
 </body>
 </html>

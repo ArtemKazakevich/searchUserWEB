@@ -27,6 +27,7 @@
     <title>Search Group</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/search/reportForSelectedUserStyle.css?ts=<?=time()?">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/spinner.css">
     <style>
         th:last-child {
             border-top-right-radius: 10px;
@@ -41,6 +42,13 @@
 </head>
 
 <body>
+
+<div id="page-preloader" class="preloader">
+    <div class="loader" role="status">
+        <span>Загрузка...</span>
+    </div>
+</div>
+
 <%
     WTGroup selectedGroup = getGroupByName((String) request.getSession().getAttribute("selectedGroup"));
     List<WTContainer> containers = getAllContainersInWindchill();
@@ -150,6 +158,8 @@
 <%
     }
 %>
+
+<script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/spinner.js"></script>
 
 <%!
     private static HashSet<Role> getContainerTeamRolesWithSelectedGroup(ContainerTeamManaged teamManaged, WTGroup group) {

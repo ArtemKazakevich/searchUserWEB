@@ -2,26 +2,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="wt.util.WTException" %>
-<%@ page import="wt.org.WTUser" %>
 <%@ page import="wt.query.QuerySpec" %>
 <%@ page import="wt.fc.QueryResult" %>
 <%@ page import="wt.fc.PersistenceHelper" %>
+<%@ page import="wt.org.*" %>
 
 <html>
 <head>
-    <title>Add User</title>
+    <title>Add Group</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/add/addUserStyle.css">
+          href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/add/addGroupStyle.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/spinner.css">
     <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/jsQuery/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
+<div id="page-preloader" class="preloader">
+    <div class="loader" role="status">
+        <span>Загрузка...</span>
+    </div>
+</div>
+
 <%
-    WTUser selectedUser = getUser((String) request.getSession().getAttribute("add_selectedUser"));
+    WTGroup selectedGroup = getGroup((String) request.getSession().getAttribute("add_selectedGroup"));
 %>
 
-<p>Пользователь, которого Вы хотите добавить: <%=selectedUser.getFullName().replace(",", "")%>
+<p>Группа, которую Вы хотите добавить: <%=selectedGroup.getName()%>
 </p>
 
 <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
@@ -33,14 +40,14 @@
     <div class="block_input">
         <input type="text" id="inputProduct" placeholder="Поиск изделий">
         <select style="margin-bottom: 20%;" id="selectProduct" multiple="true" class="product_1">
-            <c:forEach items="${containersForUser}" var="container">
+            <c:forEach items="${containersForGroup}" var="container">
                 <option value="${container.getName()}">${container.getName()}</option>
             </c:forEach>
         </select>
 
         <input type="text" id="inputRole" placeholder="Поиск роли">
         <select id="selectRole" multiple="true" class="role_1">
-            <c:forEach items="${rolesForUser}" var="role">
+            <c:forEach items="${rolesForGroup}" var="role">
                 <option value="${role.getDisplay()}">${role.getDisplay()}</option>
             </c:forEach>
         </select>
@@ -61,41 +68,42 @@
         </div>
     </div>
 
-    <form class="block_input_form" method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/add/addUser">
-        <select id="select_1" style="margin: 10% 0 33%;" multiple="true" class="product_2" name="selectedProductForUser" required></select>
-        <select id="select_2" multiple="true" class="role_2" name="selectedRoleForUser" required></select>
+    <form class="block_input_form" method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/add/addGroup">
+        <select id="select_1" style="margin: 10% 0 33%;" multiple="true" class="product_2" name="selectedProductForGroup" required></select>
+        <select id="select_2" multiple="true" class="role_2" name="selectedRoleForGroup" required></select>
         <br>
-        <button id="js-button-add" class="button_add"><span>Добавить пользователя </span></button>
+        <button id="js-button-add" class="button_add"><span>Добавить группу </span></button>
     </form>
 
 </div>
 
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/add/addScript.js"></script>
+<script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/spinner.js"></script>
 
 <%!
-    private WTUser getUser(String searchUser) {
+    private WTGroup getGroup(String searchGroup) {
 
-        WTUser u = null;
+        WTGroup g = null;
         QuerySpec querySpec;
         QueryResult qr = null;
         try {
-            querySpec = new QuerySpec(WTUser.class);
+            querySpec = new QuerySpec(WTGroup.class);
             qr = PersistenceHelper.manager.find(querySpec);
         } catch (WTException e) {
             e.printStackTrace();
         }
 
         while (qr.hasMoreElements()) {
-            WTUser user = (WTUser) qr.nextElement();
+            WTGroup group = (WTGroup) qr.nextElement();
 
-            if (!user.isDisabled()) {
-                if (searchUser.equals(user.getFullName().replace(",", ""))) {
-                    u = user;
+            if (!group.isDisabled()) {
+                if (searchGroup.equals(group.getName())) {
+                    g = group;
                 }
             }
         }
 
-        return u;
+        return g;
     }
 %>
 

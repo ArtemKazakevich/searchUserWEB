@@ -6,9 +6,16 @@
         <title>Search User</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/search/usersStyle.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/spinner.css">
     </head>
 
     <body>
+
+    <div id="page-preloader" class="preloader">
+        <div class="loader" role="status">
+            <span>Загрузка...</span>
+        </div>
+    </div>
 
     <c:if test="${flag == true}">
         <div>
@@ -34,6 +41,8 @@
             <button><span>На главную </span></button>
         </form>
     </c:if>
+
+    <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/spinner.js"></script>
 
     </body>
 

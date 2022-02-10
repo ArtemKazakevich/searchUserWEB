@@ -34,7 +34,7 @@ public class AddGroupServlet extends HttpServlet {
         List<WTContainer> containersList = getAllContainersInWindchill();
 
         System.out.println("**************");
-        System.out.println("Start add User");
+        System.out.println("Start add Group");
 
         // Проверка на пустой массив изделий и ролей
         if (selectedProductForUser != null && selectedProductForUser.length > 0) {
@@ -110,7 +110,7 @@ public class AddGroupServlet extends HttpServlet {
         request.getSession().setAttribute("containersForGroup", containers);
         request.getSession().setAttribute("rolesForGroup", roles);
 
-        request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/add/addGroup.jsp").forward(request, response);
+        request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/jsp/add/addGroup.jsp").forward(request, response);
     }
 
     // метод получения всех изделий Windchilla
@@ -171,14 +171,14 @@ public class AddGroupServlet extends HttpServlet {
             localTransaction.commit();
             localTransaction = null;
 
-            System.out.println("Good add User");
+            System.out.println("Good add Group");
             System.out.println("**************");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
 
             if (localTransaction != null) {
-                System.out.println("Error add");
+                System.out.println("Error add Group");
                 System.out.println("**************");
                 localTransaction.rollback();
             }

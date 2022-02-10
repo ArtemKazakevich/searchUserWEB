@@ -5,8 +5,11 @@ import wt.fc.QueryResult;
 import wt.inf.container.WTContainer;
 import wt.inf.container._WTContainer;
 import wt.inf.library.WTLibrary;
-import wt.org.WTUser;
+import wt.inf.team.ContainerTeam;
+import wt.inf.team.ContainerTeamHelper;
+import wt.inf.team.ContainerTeamManaged;
 import wt.pdmlink.PDMLinkProduct;
+import wt.pom.Transaction;
 import wt.project.Role;
 import wt.query.QuerySpec;
 import wt.util.WTException;
@@ -23,16 +26,102 @@ public class AddOrDeleteRoleServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         // Получаем user, список изделий, список ролей из сессии. Списки полученны из jsp
-        String[] selectedProductForUser = request.getParameterValues("selectedProductForUser");
-        String[] selectedRoleForUser = request.getParameterValues("selectedRoleForUser");
+        String[] selectedProductForRole = request.getParameterValues("selectedProductForRole");
+        String[] selectedRoleForRole = request.getParameterValues("selectedRoleForRole");
         String button = request.getParameter("typeButton");
 
-        if (button.equals("buttonAdd")) {
-            System.out.println("Кнопка была нажата Добавить");
+        List<WTContainer> containersList = getAllContainersInWindchill();
+
+        System.out.println("**************");
+        System.out.println("Start of operations on the Role");
+
+        // Проверка на пустой массив изделий и ролей
+        if (selectedProductForRole != null && selectedProductForRole.length > 0) {
+            if (selectedRoleForRole != null && selectedRoleForRole.length > 0) {
+
+                for (WTContainer wtContainer : containersList) {
+
+                    for (String container : selectedProductForRole) {
+
+                        if (wtContainer.getName().equals(container)) {
+                            boolean inStock = false;
+
+                            ContainerTeam localContainerTeam = null;
+                            Vector<?> vector = null;
+                            try {
+                                localContainerTeam = ContainerTeamHelper.service.getContainerTeam((ContainerTeamManaged) wtContainer);
+                                vector = localContainerTeam.getRoles(); // Получаем список ролей в изделии
+                            } catch (WTException e) {
+                                e.printStackTrace();
+                            }
+
+                            // Помещаем роли Изделия в List, для удобства работы
+                            List<Role> roles = new ArrayList<>();
+                            for (Object obj : vector) {
+
+                                if (obj instanceof Role) {
+                                    Role role = (Role) obj;
+                                    roles.add(role);
+                                }
+                            }
+
+                            // Проверяем наличие роли(которую планируем добавить) в изделии.
+                            for (String stringRole : selectedRoleForRole) {
+
+                                for (Role role : roles) {
+
+                                    if (role.getDisplay(new Locale("ru", "RU")).equals(stringRole)) {
+
+                                        if (button.equals("buttonAdd")) {
+                                            System.out.println("**************");
+                                            System.out.println("Роль уже есть в изделии");
+
+                                            inStock = true;
+                                        }
+
+                                        if (button.equals("buttonDelete")) {
+                                            System.out.println("**************");
+                                            System.out.println("Start delete Role");
+
+                                            deleteRole(role, localContainerTeam);
+                                            inStock = true;
+                                        }
+                                    }
+                                }
+
+                                // если нет роли в изделии, ищем ее из общего списка ролей Windchilla
+                                if (!inStock) {
+                                    Role[] roleSet = Role.getRoleSet(); // Получпем все роли Windchilla
+
+                                    for (Role r : roleSet) {
+
+                                        if (r.getDisplay(new Locale("ru", "RU")).equals(stringRole)) {
+
+                                            if (button.equals("buttonAdd")) {
+                                                System.out.println("**************");
+                                                System.out.println("Start add Role");
+
+                                                addRole(r, localContainerTeam);
+                                            }
+
+                                            if (button.equals("buttonDelete")) {
+                                                System.out.println("**************");
+                                                System.out.println("Start delete Role");
+
+                                                deleteRole(r, localContainerTeam);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-        if (button.equals("buttonDelete")) {
-            System.out.println("Кнопка была нажата Удалить");
-        }
+
+        String path = request.getContextPath() + "/servlet/searchUserWEB/add/finish";
+        response.sendRedirect(path);
 
     }
 
@@ -48,7 +137,7 @@ public class AddOrDeleteRoleServlet extends HttpServlet {
         request.getSession().setAttribute("containersForRole", containers);
         request.getSession().setAttribute("rolesForRole", roles);
 
-        request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/role/addOrDeleteRole.jsp").forward(request, response);
+        request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/jsp/role/addOrDeleteRole.jsp").forward(request, response);
     }
 
     // метод получения всех изделий Windchilla
@@ -68,5 +157,59 @@ public class AddOrDeleteRoleServlet extends HttpServlet {
         }
 
         return containers;
+    }
+
+    // метод добавления роли в изделие
+    private void addRole(Role role, ContainerTeam containerTeam) {
+        Transaction localTransaction = new Transaction();
+
+        try {
+            localTransaction.start();
+
+            ContainerTeam team = (ContainerTeam) PersistenceHelper.manager.refresh(containerTeam);
+            ContainerTeamHelper.service.addMember(team, role, null);
+
+            localTransaction.commit();
+            localTransaction = null;
+
+            System.out.println("Good add Role");
+            System.out.println("**************");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            if (localTransaction != null) {
+                System.out.println("Error add Role");
+                System.out.println("**************");
+                localTransaction.rollback();
+            }
+        }
+    }
+
+    // метод удаления роли в изделие
+    private void deleteRole(Role role, ContainerTeam containerTeam) {
+        Transaction localTransaction = new Transaction();
+
+        try {
+            localTransaction.start();
+
+            ContainerTeam team = (ContainerTeam) PersistenceHelper.manager.refresh(containerTeam);
+            ContainerTeamHelper.service.removeRole(team, role);
+
+            localTransaction.commit();
+            localTransaction = null;
+
+            System.out.println("Good delete Role");
+            System.out.println("**************");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            if (localTransaction != null) {
+                System.out.println("Error delete Role");
+                System.out.println("**************");
+                localTransaction.rollback();
+            }
+        }
     }
 }

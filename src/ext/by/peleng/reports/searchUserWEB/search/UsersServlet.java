@@ -39,7 +39,7 @@ public class UsersServlet extends HttpServlet {
                request.getSession().setAttribute("flag", false);
           }
           
-          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/search/users.jsp").forward(request, response);
+          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/jsp/search/users.jsp").forward(request, response);
      }
      
      private static ArrayList<WTUser> findUserByLastName(String userLastName) {

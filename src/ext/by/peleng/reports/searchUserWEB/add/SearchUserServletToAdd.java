@@ -32,7 +32,7 @@ public class SearchUserServletToAdd extends HttpServlet {
 
           request.getSession().setAttribute("userList", userList);
 
-          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/add/searchUserToAdd.jsp").forward(request, response);
+          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/jsp/add/searchUserToAdd.jsp").forward(request, response);
      }
      
      // получаем всех пользователей

@@ -1,0 +1,24 @@
+/* Спинер */
+.preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #ebe8e8;
+    z-index: 5;
+    transition: 1s all;
+    opacity: 1;
+    visibility: visible;
+}
+
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.done {
+    opacity: 0;
+    visibility: hidden;
+}

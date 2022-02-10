@@ -109,7 +109,7 @@ public class AddUserServlet extends HttpServlet {
         request.getSession().setAttribute("containersForUser", containers);
         request.getSession().setAttribute("rolesForUser", roles);
 
-        request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/add/addUser.jsp").forward(request, response);
+        request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/jsp/add/addUser.jsp").forward(request, response);
     }
 
     // метод получения всех изделий Windchilla
@@ -176,7 +176,7 @@ public class AddUserServlet extends HttpServlet {
         } finally {
 
             if (localTransaction != null) {
-                System.out.println("Error add");
+                System.out.println("Error add User");
                 System.out.println("**************");
                 localTransaction.rollback();
             }

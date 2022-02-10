@@ -31,7 +31,7 @@ public class SearchGroupServletToAdd extends HttpServlet {
 
           request.getSession().setAttribute("groupList", groupList);
 
-          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/add/searchGroupToAdd.jsp").forward(request, response);
+          request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/jsp/add/searchGroupToAdd.jsp").forward(request, response);
      }
 
      // получаем все группы

@@ -15,7 +15,7 @@
                     <input type="text" name="lastName" placeholder="Иванов*" autocomplete="off" required>
                 </label>
                 <br>
-                <button><span>Ввод </span></button>
+                <button id="js-button"><span>Ввод </span></button>
             </form>
         </div>
     </body>

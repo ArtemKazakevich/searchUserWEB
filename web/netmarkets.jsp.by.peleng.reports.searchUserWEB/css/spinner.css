@@ -7,9 +7,10 @@
     height: 100%;
     background: #ebe8e8;
     z-index: 5;
-    transition: 1s all;
+    transition: 2s all;
     opacity: 1;
     visibility: visible;
+    display: none;
 }
 
 .loader {

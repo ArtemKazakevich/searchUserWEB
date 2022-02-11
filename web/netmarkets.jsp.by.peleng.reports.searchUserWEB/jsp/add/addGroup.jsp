@@ -19,7 +19,7 @@
 <body>
 
 <div id="page-preloader" class="preloader">
-    <div class="loader" role="status">
+    <div class="loader">
         <span>Загрузка...</span>
     </div>
 </div>

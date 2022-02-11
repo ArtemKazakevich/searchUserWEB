@@ -60,7 +60,7 @@
 <body>
 
 <div id="page-preloader" class="preloader">
-    <div class="loader" role="status">
+    <div class="loader">
         <span>Загрузка...</span>
     </div>
 </div>
@@ -87,7 +87,7 @@
 </form>
 
 <form id="frm1" method="post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search/reportForSelectedUserServlet">
-    <button><span>Удалить выбранное</span></button>
+    <button id="js-button"><span>Удалить выбранное</span></button>
     <table id="data">
         <caption>Изделия, к которым имеет доступ <%=selectedUser.getFullName().replace(",", "")%></caption>
         <tr>

@@ -14,7 +14,7 @@
             <input type="text" name="groupName" placeholder="Инженер*" autocomplete="off" required>
         </label>
         <br>
-        <button><span>Ввод </span></button>
+        <button id="js-button"><span>Ввод </span></button>
     </form>
 </div>
 </body>

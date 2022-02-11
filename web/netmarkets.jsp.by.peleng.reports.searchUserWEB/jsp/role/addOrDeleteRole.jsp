@@ -12,7 +12,7 @@
 <body>
 
 <div id="page-preloader" class="preloader">
-    <div class="loader" role="status">
+    <div class="loader">
         <span>Загрузка...</span>
     </div>
 </div>
@@ -58,8 +58,8 @@
         <select id="select_1" style="margin: 3% 0 30%;" multiple="true" class="product_2" name="selectedProductForRole" required></select>
         <select id="select_2" multiple="true" class="role_2" name="selectedRoleForRole" required></select>
         <div style="margin-top: 5%;">
-            <button id="js-button-add_1" class="button_add js-button"><span>Удалить роль </span></button>
-            <button id="js-button-add_2" class="button_add js-button"><span>Добавить роль </span></button>
+            <button id="js-button-add_1" class="button_add"><span>Удалить роль </span></button>
+            <button id="js-button-add_2" class="button_add"><span>Добавить роль </span></button>
         </div>
     </form>
 

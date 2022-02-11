@@ -11,7 +11,7 @@
 <body>
 
 <div id="page-preloader" class="preloader">
-    <div class="loader" role="status">
+    <div class="loader">
         <span>Загрузка...</span>
     </div>
 </div>
@@ -37,7 +37,7 @@
         <input type="text" name="add_selectedGroup" placeholder="Инженер*" autocomplete="off" required list="emps">
     </label>
     <br>
-    <button><span>Ввод </span></button>
+    <button id="js-button"><span>Ввод </span></button>
 
 </form>
 

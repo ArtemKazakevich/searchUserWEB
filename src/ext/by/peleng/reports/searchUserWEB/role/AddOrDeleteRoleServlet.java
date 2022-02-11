@@ -106,9 +106,7 @@ public class AddOrDeleteRoleServlet extends HttpServlet {
 
                                             if (button.equals("buttonDelete")) {
                                                 System.out.println("**************");
-                                                System.out.println("Start delete Role");
-
-                                                deleteRole(r, localContainerTeam);
+                                                System.out.println("Роли и так нет в изделии");
                                             }
                                         }
                                     }

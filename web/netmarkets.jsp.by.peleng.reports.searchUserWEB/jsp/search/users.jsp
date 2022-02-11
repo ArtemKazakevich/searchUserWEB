@@ -12,7 +12,7 @@
     <body>
 
     <div id="page-preloader" class="preloader">
-        <div class="loader" role="status">
+        <div class="loader">
             <span>Загрузка...</span>
         </div>
     </div>
@@ -30,7 +30,7 @@
                     </select>
                 </label>
                 <br>
-                <button><span>Ввод </span></button>
+                <button id="js-button"><span>Ввод </span></button>
             </form>
         </div>
     </c:if>

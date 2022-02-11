@@ -7,13 +7,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/search/usersStyle.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/spinner.css">
-    <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/spinner.js"></script>
 </head>
 
 <body>
 
 <div id="page-preloader" class="preloader">
-    <div class="loader" role="status">
+    <div class="loader">
         <span>Загрузка...</span>
     </div>
 </div>
@@ -31,7 +30,7 @@
                 </select>
             </label>
             <br>
-            <button><span>Ввод </span></button>
+            <button id="js-button"><span>Ввод </span></button>
         </form>
     </div>
 </c:if>

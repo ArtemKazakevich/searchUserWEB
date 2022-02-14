@@ -6,6 +6,7 @@
 <%@ page import="wt.fc.QueryResult" %>
 <%@ page import="wt.fc.PersistenceHelper" %>
 <%@ page import="wt.org.*" %>
+<%@ page import="java.util.Locale" %>
 
 <html>
 <head>
@@ -26,6 +27,9 @@
 
 <%
     WTGroup selectedGroup = getGroup((String) request.getSession().getAttribute("add_selectedGroup"));
+
+    Locale myLocale = new Locale("ru", "RU");
+    pageContext.setAttribute("myLocale", myLocale);
 %>
 
 <p>Группа, которую Вы хотите добавить: <%=selectedGroup.getName()%>
@@ -48,7 +52,7 @@
         <input type="text" id="inputRole" placeholder="Поиск роли">
         <select id="selectRole" multiple="true" class="role_1">
             <c:forEach items="${rolesForGroup}" var="role">
-                <option value="${role.getDisplay()}">${role.getDisplay()}</option>
+                <option value="${role.getDisplay()}">${role.getDisplay(myLocale)}</option>
             </c:forEach>
         </select>
     </div>

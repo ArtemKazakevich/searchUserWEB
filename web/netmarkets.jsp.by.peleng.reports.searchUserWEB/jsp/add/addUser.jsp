@@ -6,6 +6,7 @@
 <%@ page import="wt.query.QuerySpec" %>
 <%@ page import="wt.fc.QueryResult" %>
 <%@ page import="wt.fc.PersistenceHelper" %>
+<%@ page import="java.util.Locale" %>
 
 <html>
 <head>
@@ -26,6 +27,9 @@
 
 <%
     WTUser selectedUser = getUser((String) request.getSession().getAttribute("add_selectedUser"));
+
+    Locale myLocale = new Locale("ru", "RU");
+    pageContext.setAttribute("myLocale", myLocale);
 %>
 
 <p>Пользователь, которого Вы хотите добавить: <%=selectedUser.getFullName().replace(",", "")%>
@@ -48,7 +52,7 @@
         <input type="text" id="inputRole" placeholder="Поиск роли">
         <select id="selectRole" multiple="true" class="role_1">
             <c:forEach items="${rolesForUser}" var="role">
-                <option value="${role.getDisplay()}">${role.getDisplay()}</option>
+                <option value="${role.getDisplay()}">${role.getDisplay(myLocale)}</option>
             </c:forEach>
         </select>
     </div>

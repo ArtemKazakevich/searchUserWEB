@@ -1,3 +1,4 @@
+<%@ page import="java.util.Locale" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -17,6 +18,11 @@
     </div>
 </div>
 
+<%
+    Locale myLocale = new Locale("ru", "RU");
+    pageContext.setAttribute("myLocale", myLocale);
+%>
+
 <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
     <button class="button_exit"><span>На главную</span></button>
 </form>
@@ -34,7 +40,7 @@
         <input type="text" id="inputRole" placeholder="Поиск роли">
         <select id="selectRole" multiple="true" class="role_1">
             <c:forEach items="${rolesForRole}" var="role">
-                <option value="${role.getDisplay()}">${role.getDisplay()}</option>
+                <option value="${role.getDisplay()}">${role.getDisplay(myLocale)}</option>
             </c:forEach>
         </select>
     </div>

@@ -70,7 +70,8 @@ public class AddOrDeleteRoleServlet extends HttpServlet {
 
                                 for (Role role : roles) {
 
-                                    if (role.getDisplay(new Locale("ru", "RU")).equals(stringRole)) {
+                                    // из jsp получаем роль на англ языке.
+                                    if (role.getDisplay().equals(stringRole)) {
 
                                         if (button.equals("buttonAdd")) {
                                             System.out.println("**************");
@@ -95,7 +96,7 @@ public class AddOrDeleteRoleServlet extends HttpServlet {
 
                                     for (Role r : roleSet) {
 
-                                        if (r.getDisplay(new Locale("ru", "RU")).equals(stringRole)) {
+                                        if (r.getDisplay().equals(stringRole)) {
 
                                             if (button.equals("buttonAdd")) {
                                                 System.out.println("**************");

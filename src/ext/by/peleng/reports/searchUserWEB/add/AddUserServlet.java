@@ -68,7 +68,8 @@ public class AddUserServlet extends HttpServlet {
 
                                 for (Role role : roles) {
 
-                                    if (role.getDisplay(new Locale("ru", "RU")).equals(stringRole)) {
+                                    // из jsp получаем роль на англ языке.
+                                    if (role.getDisplay().equals(stringRole)) {
                                         addUserAndRole(role, selectedUser, localContainerTeam);
                                         inStock = true;
                                     }
@@ -80,7 +81,7 @@ public class AddUserServlet extends HttpServlet {
 
                                     for (Role r : roleSet) {
 
-                                        if (r.getDisplay(new Locale("ru", "RU")).equals(stringRole)) {
+                                        if (r.getDisplay().equals(stringRole)) {
                                             addUserAndRole(r, selectedUser, localContainerTeam);
                                         }
                                     }

@@ -53,7 +53,7 @@ public class SearchGroupServletToAdd extends HttpServlet {
 
                if (!group.isDisabled()) {
 
-                    if (group.getDn() != null & group.getContainerName().equals("PELENG")) {
+                    if (group.getDn() != null) {
                          groups.add(group.getName());
                     }
                }

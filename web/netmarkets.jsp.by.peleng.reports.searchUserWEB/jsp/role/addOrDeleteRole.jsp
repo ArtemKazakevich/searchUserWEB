@@ -64,12 +64,53 @@
         <select id="select_1" style="margin: 3% 0 30%;" multiple="true" class="product_2" name="selectedProductForRole" required></select>
         <select id="select_2" multiple="true" class="role_2" name="selectedRoleForRole" required></select>
         <div style="margin-top: 5%;">
-            <button id="js-button-add_1" class="button_add"><span>Удалить роль </span></button>
-            <button id="js-button-add_2" class="button_add"><span>Добавить роль </span></button>
+            <button id="js-button-add_1" class="button_add">
+                <div id="push_1" style="display: none;" class="spinner"></div>
+                <span id="span_1">Удалить роль </span>
+            </button>
+            <button id="js-button-add_2" class="button_add">
+                <div id="push_2" style="display: none;" class="spinner"></div>
+                <span id="span_2">Добавить роль </span>
+            </button>
         </div>
     </form>
 
 </div>
+
+<script>
+    const but_1 = document.getElementById('js-button-add_1')
+    const push_1 = document.getElementById('push_1');
+    const sp_1 = document.getElementById('span_1');
+
+    const but_2 = document.getElementById('js-button-add_2')
+    const push_2 = document.getElementById('push_2');
+    const sp_2 = document.getElementById('span_2');
+
+    function trigger_1() {
+
+        if (push_1.style.display == 'none') {
+            sp_1.style.display = 'none';
+            push_1.style.display = 'block';
+        } else {
+            sp_1.style.display = 'block';
+            push_1.style.display = 'none';
+        }
+    }
+
+    function trigger_2() {
+
+        if (push_2.style.display == 'none') {
+            sp_2.style.display = 'none';
+            push_2.style.display = 'block';
+        } else {
+            sp_2.style.display = 'block';
+            push_2.style.display = 'none';
+        }
+    }
+
+    but_1.addEventListener('click', trigger_1);
+    but_2.addEventListener('click', trigger_2);
+</script>
 
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/add/addScript.js"></script>
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/role/addOrDeleteRoleServlet.js"></script>

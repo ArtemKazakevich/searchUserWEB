@@ -76,10 +76,32 @@
         <select id="select_1" style="margin: 10% 0 33%;" multiple="true" class="product_2" name="selectedProductForUser" required></select>
         <select id="select_2" multiple="true" class="role_2" name="selectedRoleForUser" required></select>
         <br>
-        <button id="js-button-add" class="button_add"><span>Добавить пользователя </span></button>
+        <button id="js-button-add" class="button_add">
+            <div id="push" style="display: none;" class="spinner"></div>
+            <span id="span">Добавить пользователя </span>
+        </button>
     </form>
 
 </div>
+
+<script>
+    const but = document.getElementById('js-button-add')
+    const push = document.getElementById('push');
+    const sp = document.getElementById('span');
+
+    function trigger() {
+
+        if (push.style.display == 'none') {
+            sp.style.display = 'none';
+            push.style.display = 'block';
+        } else {
+            sp.style.display = 'block';
+            push.style.display = 'none';
+        }
+    }
+
+    but.addEventListener('click', trigger);
+</script>
 
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/add/addScript.js"></script>
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/spinner.js"></script>

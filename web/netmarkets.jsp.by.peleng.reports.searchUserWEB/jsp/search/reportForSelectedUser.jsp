@@ -280,14 +280,31 @@
     }
 %>
 
+
 <%!
+    // метод получения user из БД
     private static WTUser getUserByName(String userName) {
+        WTUser u = null;
+        QuerySpec querySpec;
+        QueryResult qr = null;
         try {
-            return OrganizationServicesHelper.manager.getUser(userName);
+            querySpec = new QuerySpec(WTUser.class);
+            qr = PersistenceHelper.manager.find(querySpec);
         } catch (WTException e) {
             e.printStackTrace();
         }
-        return null;
+
+        while (qr.hasMoreElements()) {
+            WTUser user = (WTUser) qr.nextElement();
+
+            if (!user.isDisabled()) {
+                if (userName.equals(user.getFullName().replace(",", ""))) {
+                    u = user;
+                }
+            }
+        }
+
+        return u;
     }
 %>
 </body>

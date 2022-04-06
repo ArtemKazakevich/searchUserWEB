@@ -1,9 +1,12 @@
 package ext.by.peleng.reports.searchUserWEB.search;
 
+import wt.fc.PersistenceHelper;
+import wt.fc.QueryResult;
 import wt.inf.container.WTContainer;
 import wt.inf.team.*;
 import wt.org.*;
 import wt.project.Role;
+import wt.query.QuerySpec;
 import wt.util.WTException;
 import wt.pom.Transaction;
 
@@ -22,6 +25,7 @@ public class ReportForSelectedUserServlet extends HttpServlet {
           String[] ids = request.getParameterValues("id");
      
           System.out.println("Start testDeleteUserFromRole");
+          System.out.println("Name user - " + selectedUser.getFullName());
      
           if (ids != null && ids.length > 0) {
           
@@ -43,14 +47,14 @@ public class ReportForSelectedUserServlet extends HttpServlet {
                     try {
                          localTransaction.start();
                          
-                         ContainerTeam localContainerTeam = null;
-                         localContainerTeam = ContainerTeamHelper.service.getContainerTeam((ContainerTeamManaged) container);
+                         ContainerTeam localContainerTeam = ContainerTeamHelper.service.getContainerTeam((ContainerTeamManaged) container);
                     
                          Enumeration localEnumeration = ContainerTeamServerHelper.service.findRoles(ContainerTeamReference.newContainerTeamReference(localContainerTeam), selectedUser);
                          System.out.println("roles to be deleted " + localEnumeration);
                     
                          while (localEnumeration.hasMoreElements()) {
                               Role localRole1 = (Role)localEnumeration.nextElement();
+                              System.out.println("Name role - " + localRole1.getDisplay(new Locale("ru", "RU")));
                               localContainerTeam.deletePrincipalTarget(localRole1, selectedUser);
                          }
                          
@@ -80,14 +84,30 @@ public class ReportForSelectedUserServlet extends HttpServlet {
           
           request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/jsp/search/reportForSelectedUser.jsp").forward(request, response);
      }
-     
+
+     // метод получения user из БД
      private static WTUser getUserByName(String userName) {
+          WTUser u = null;
+          QuerySpec querySpec;
+          QueryResult qr = null;
           try {
-               return OrganizationServicesHelper.manager.getUser(userName);
+               querySpec = new QuerySpec(WTUser.class);
+               qr = PersistenceHelper.manager.find(querySpec);
           } catch (WTException e) {
                e.printStackTrace();
           }
-          return null;
+
+          while (qr.hasMoreElements()) {
+               WTUser user = (WTUser) qr.nextElement();
+
+               if (!user.isDisabled()) {
+                    if (userName.equals(user.getFullName().replace(",", ""))) {
+                         u = user;
+                    }
+               }
+          }
+
+          return u;
      }
      
 }

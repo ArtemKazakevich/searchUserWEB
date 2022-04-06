@@ -35,24 +35,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>UsersServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.search.UsersServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UsersServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/search/users</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>GroupsServlet</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.search.GroupsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GroupsServlet</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/search/groups</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>ReportForSelectedUserServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.search.ReportForSelectedUserServlet</servlet-class>
     </servlet>

@@ -2,6 +2,10 @@
     font-family: "Times New Roman", "Times New Roman", Sans-Serif, sans-serif;
 }
 
+input::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
 html {
     font-size: 20px;
     color: #656665;
@@ -15,7 +19,7 @@ body {
 }
 
 form {
-    margin: 15% auto;
+    margin: 5% auto;
     font-size: 26px;
     font-weight: bold;
 }

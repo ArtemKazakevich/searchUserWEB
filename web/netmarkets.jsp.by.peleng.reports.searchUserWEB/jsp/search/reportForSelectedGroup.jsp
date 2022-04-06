@@ -19,26 +19,36 @@
 <%@ page import="wt.inf.library.WTLibrary" %>
 <%@ page import="wt.fc.ReferenceFactory" %>
 <%@ page import="java.util.*" %>
-<%@ page import="wt.inf.container.OrgContainer" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
     <title>Search Group</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/search/reportForSelectedUserStyle.css?ts=<?=time()?">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/spinner.css">
-    <style>
-        th:last-child {
-            border-top-right-radius: 10px;
-            border-right: none;
-            width: 35%;
-        }
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/search/reportForSelectedUserStyle.css?ts=<?=time()?">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/spinner.css">
 
-        table {
-            margin-bottom: 5%;
+    <script type="text/javascript">
+        var checked = false;
+
+        function checkedAll(frm_group) {
+            var a = document.getElementById("frm_group");
+
+            if (checked == false) {
+                checked = true;
+            } else {
+                checked = false;
+            }
+
+            for (var i = 0; i < a.elements.length; i++) {
+                a.elements[i].checked = checked;
+            }
+
         }
-    </style>
+    </script>
+
 </head>
 
 <body>
@@ -56,30 +66,6 @@
 
     int number = 0;
 
-    if (selectedGroup == null) {
-        String name = (String) request.getSession().getAttribute("selectedGroup");
-
-        try {
-            QuerySpec localQuerySpec = new QuerySpec();
-            localQuerySpec.appendClassList(OrgContainer.class, true);
-            QueryResult localQueryResult = PersistenceHelper.manager.find(localQuerySpec);
-            int i = localQueryResult.size();
-            OrgContainer localOrgContainer;
-
-            for (int j = 0; j < i; j++) {
-                localOrgContainer = (OrgContainer)((Object[]) localQueryResult.nextElement())[0];
-
-                if (localOrgContainer.getName().equals("PELENG")) {
-                    WTGroup localWTGroup = OrganizationServicesHelper.manager.getGroup(name, localOrgContainer.getContextProvider());
-                    selectedGroup = localWTGroup;
-                }
-            }
-        }
-        catch (WTException e) {
-            e.printStackTrace();
-        }
-    }
-
     for (WTContainer container : containers) {
         ContainerTeamManaged teamManaged = (ContainerTeamManaged) container;
         Set<Role> roles = getContainerTeamRolesWithSelectedGroup(teamManaged, selectedGroup);
@@ -94,70 +80,98 @@
     <button><span>На главную</span></button>
 </form>
 
-<table id="data">
-    <caption>Изделия, к которым имеет доступ ${selectedGroup}</caption>
-    <tr>
-        <th>№</th>
-        <th>Изделия (<span id="num"></span>)</th>
-        <th>Роль</th>
-    </tr>
-    <%
-        ReferenceFactory refFact = new ReferenceFactory();
-        for (Map.Entry<WTContainer, HashSet<Role>> entries : containersWithSelectedGroup.entrySet()) {
-            WTContainer container = entries.getKey();
-            HashSet<Role> roles = entries.getValue();
-            boolean isFirstElement = true;
+<form id="frm_group" method="post"
+      action="${pageContext.request.contextPath}/servlet/searchUserWEB/search/reportForSelectedGroupServlet">
+    <button id="js-button"><span>Удалить выбранное</span></button>
+    <table id="data_group">
+        <caption>Изделия, к которым имеет доступ ${selectedGroup}</caption>
+        <tr>
+            <th>№</th>
+            <th>Изделия (<span id="num"></span>)</th>
+            <th>Роль</th>
+            <th>
+                Выбрать
+                <br>
+                <label class="container">
+                    <input type="checkbox" onclick="checkedAll();" name="checkAll"/>
+                    <span class="checkboxTh"></span>
+                </label>
+            </th>
+        </tr>
+        <%
+            ReferenceFactory refFact = new ReferenceFactory();
+            for (Map.Entry<WTContainer, HashSet<Role>> entries : containersWithSelectedGroup.entrySet()) {
+                WTContainer container = entries.getKey();
+                HashSet<Role> roles = entries.getValue();
+                boolean isFirstElement = true;
+                String oid = "";
 
-            for (Role role : roles) {
+                try {
+                    oid = refFact.getReferenceString(container);
+                } catch (WTException e) {
+                    e.printStackTrace();
+                }
 
-                if (isFirstElement) {
-                    number++;
-    %>
-    <tr>
-        <td>
-            <%=number%>
-        </td>
-        <td>
-            <a href="https://wch.peleng.jsc.local/Windchill/app/#ptc1/library/listTeam?oid=<%=refFact.getReferenceString(container)%>" target="_blank"><%=container.getName()%></a>
-        </td>
-            <%
+                for (Role role : roles) {
+
+                    if (isFirstElement) {
+                        number++;
+        %>
+        <tr>
+            <td>
+                <%=number%>
+            </td>
+            <td>
+                <a href="https://wch.peleng.jsc.local/Windchill/app/#ptc1/library/listTeam?oid=<%=refFact.getReferenceString(container)%>"
+                   target="_blank"><%=container.getName()%>
+                </a>
+            </td>
+                <%
                 isFirstElement = false;
                 } else {
             %>
-    <tr>
-        <td></td>
-        <td></td>
+        <tr>
+            <td></td>
+            <td></td>
+            <%
+                }
+            %>
+            <td><%=role.getDisplay(new Locale("ru", "RU"))%>
+            </td>
+            <td>
+                <label class="container">
+                    <input type="checkbox" name="id_group" value="<%=oid%>">
+                    <span class="checkMark"></span>
+                </label>
+            </td>
+        </tr>
         <%
+                }
             }
         %>
-        <td><%=role.getDisplay(new Locale("ru", "RU"))%></td>
-    </tr>
+
+    </table>
+
+    <script>
+        document.getElementById("num").innerHTML = <%=number%>;
+    </script>
+
     <%
-            }
-        }
+
+    } else {
+
     %>
 
-</table>
+    <h3>Группа <b>${selectedGroup}</b> не имеет доступа к контекстам.</h3>
 
-<script>
-    document.getElementById("num").innerHTML = <%=number%>;
-</script>
+    <form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
+        <button><span>На главную</span></button>
+    </form>
 
-<%
-
-} else {
-
-%>
-
-<h3>Группа <b>${selectedGroup}</b> не имеет доступа к контекстам.</h3>
-
-<form method="get" action="${pageContext.request.contextPath}/servlet/searchUserWEB/index">
-    <button><span>На главную</span></button>
+    <%
+        }
+    %>
 </form>
-
-<%
-    }
-%>
 
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/spinner.js"></script>
 
@@ -241,13 +255,30 @@
 %>
 
 <%!
-    private static WTGroup getGroupByName(String groupName) {
+    // метод получения группы из БД
+    private WTGroup getGroupByName(String searchGroup) {
+
+        WTGroup g = null;
+        QuerySpec querySpec;
+        QueryResult qr = null;
         try {
-            return OrganizationServicesHelper.manager.getGroup(groupName);
+            querySpec = new QuerySpec(WTGroup.class);
+            qr = PersistenceHelper.manager.find(querySpec);
         } catch (WTException e) {
             e.printStackTrace();
         }
-        return null;
+
+        while (qr.hasMoreElements()) {
+            WTGroup group = (WTGroup) qr.nextElement();
+
+            if (!group.isDisabled()) {
+                if (searchGroup.equals(group.getName())) {
+                    g = group;
+                }
+            }
+        }
+
+        return g;
     }
 %>
 </body>

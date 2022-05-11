@@ -25,64 +25,73 @@ public class AddUserServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         // Получаем user, список изделий, список ролей из сессии. Списки полученны из jsp
-        WTUser selectedUser = getUser((String) request.getSession().getAttribute("add_selectedUser"));
+        String[] selectedUserForUser = request.getParameterValues("selectedUserForUser");
         String[] selectedProductForUser = request.getParameterValues("selectedProductForUser");
         String[] selectedRoleForUser = request.getParameterValues("selectedRoleForUser");
 
+        List<WTUser> usersList = findAllUser();
         List<WTContainer> containersList = getAllContainersInWindchill();
 
         System.out.println("**************");
         System.out.println("Start add User");
 
-        // Проверка на пустой массив изделий и ролей
-        if (selectedProductForUser != null && selectedProductForUser.length > 0) {
-            if (selectedRoleForUser != null && selectedRoleForUser.length > 0) {
+        // Проверка на пустой массив пользователей, изделий и ролей
+        if (selectedUserForUser != null && selectedUserForUser.length > 0) {
+            if (selectedProductForUser != null && selectedProductForUser.length > 0) {
+                if (selectedRoleForUser != null && selectedRoleForUser.length > 0) {
 
-                for (WTContainer wtContainer : containersList) {
+                    for (WTContainer wtContainer : containersList) {
+                        for (String container : selectedProductForUser) {
+                            if (wtContainer.getName().equals(container)) {
 
-                    for (String container : selectedProductForUser) {
+                                for (WTUser wtUser : usersList) {
+                                    for (String user : selectedUserForUser) {
+                                        if (wtUser.getFullName().equals(user)) {
 
-                        if (wtContainer.getName().equals(container)) {
-                            boolean inStock = false;
+                                            boolean inStock = false;
 
-                            ContainerTeam localContainerTeam = null;
-                            Vector<?> vector = null;
-                            try {
-                                localContainerTeam = ContainerTeamHelper.service.getContainerTeam((ContainerTeamManaged) wtContainer);
-                                vector = localContainerTeam.getRoles(); // Получаем список ролей в изделии
-                            } catch (WTException e) {
-                                e.printStackTrace();
-                            }
+                                            ContainerTeam localContainerTeam = null;
+                                            Vector<?> vector = null;
+                                            try {
+                                                localContainerTeam = ContainerTeamHelper.service.getContainerTeam((ContainerTeamManaged) wtContainer);
+                                                vector = localContainerTeam.getRoles(); // Получаем список ролей в изделии
+                                            } catch (WTException e) {
+                                                e.printStackTrace();
+                                            }
 
-                            List<Role> roles = new ArrayList<>();
-                            for (Object obj : vector) {
+                                            List<Role> roles = new ArrayList<>();
+                                            for (Object obj : vector) {
 
-                                if (obj instanceof Role) {
-                                    Role role = (Role) obj;
-                                    roles.add(role);
-                                }
-                            }
+                                                if (obj instanceof Role) {
+                                                    Role role = (Role) obj;
+                                                    roles.add(role);
+                                                }
+                                            }
 
-                            // Проверяем наличие роли(которую планируем добавить) в изделии.
-                            for (String stringRole : selectedRoleForUser) {
+                                            // Проверяем наличие роли(которую планируем добавить) в изделии.
+                                            for (String stringRole : selectedRoleForUser) {
 
-                                for (Role role : roles) {
+                                                for (Role role : roles) {
 
-                                    // из jsp получаем роль на англ языке.
-                                    if (role.getDisplay().equals(stringRole)) {
-                                        addUserAndRole(role, selectedUser, localContainerTeam);
-                                        inStock = true;
-                                    }
-                                }
+                                                    // из jsp получаем роль на англ языке.
+                                                    if (role.getDisplay().equals(stringRole)) {
+                                                        addUserAndRole(role, wtUser, localContainerTeam);
+                                                        inStock = true;
+                                                    }
+                                                }
 
-                                // если нет роли в изделии, ищем ее из общего списка ролей Windchilla
-                                if (!inStock) {
-                                    Role[] roleSet = Role.getRoleSet(); // Получпем все роли Windchilla
+                                                // если нет роли в изделии, ищем ее из общего списка ролей Windchilla
+                                                if (!inStock) {
+                                                    Role[] roleSet = Role.getRoleSet(); // Получпем все роли Windchilla
 
-                                    for (Role r : roleSet) {
+                                                    for (Role r : roleSet) {
 
-                                        if (r.getDisplay().equals(stringRole)) {
-                                            addUserAndRole(r, selectedUser, localContainerTeam);
+                                                        if (r.getDisplay().equals(stringRole)) {
+                                                            addUserAndRole(r, wtUser, localContainerTeam);
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -99,6 +108,12 @@ public class AddUserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
+
+        // получаем всех пользователей
+        List<WTUser> users = findAllUser();
+        users.sort((o1, o2) -> o1.getFullName().compareTo(o2.getFullName()));
+
+        // получаем все изделия
         List<WTContainer> containers = getAllContainersInWindchill();
         containers.sort(Comparator.comparing(_WTContainer::getName));
 
@@ -107,10 +122,36 @@ public class AddUserServlet extends HttpServlet {
         ArrayList<Role> roles = new ArrayList<>(Arrays.asList(r));
         roles.sort(Comparator.comparing((Role o) -> o.getDisplay(new Locale("ru", "RU"))));
 
+        request.getSession().setAttribute("usersForUser", users);
         request.getSession().setAttribute("containersForUser", containers);
         request.getSession().setAttribute("rolesForUser", roles);
 
         request.getRequestDispatcher("/netmarkets/jsp/by/peleng/reports/searchUserWEB/jsp/add/addUser.jsp").forward(request, response);
+    }
+
+    // получаем всех пользователей
+    private List<WTUser> findAllUser() {
+
+        List<WTUser> users = new ArrayList<>();
+
+        QuerySpec querySpec;
+        QueryResult qr = null;
+        try {
+            querySpec = new QuerySpec(WTUser.class);
+            qr = PersistenceHelper.manager.find(querySpec);
+        } catch (WTException e) {
+            e.printStackTrace();
+        }
+
+        while (qr.hasMoreElements()) {
+            WTUser user = (WTUser) qr.nextElement();
+
+            if (!user.isDisabled()) {
+                users.add(user);
+            }
+        }
+
+        return users;
     }
 
     // метод получения всех изделий Windchilla

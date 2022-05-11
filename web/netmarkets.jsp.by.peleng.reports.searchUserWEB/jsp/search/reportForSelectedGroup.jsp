@@ -62,7 +62,9 @@
 <%
     WTGroup selectedGroup = getGroupByName((String) request.getSession().getAttribute("selectedGroup"));
     List<WTContainer> containers = getAllContainersInWindchill();
-    Map<WTContainer, HashSet<Role>> containersWithSelectedGroup = new HashMap<>();
+    LinkedHashMap<WTContainer, HashSet<Role>> containersWithSelectedGroup = new LinkedHashMap<>();
+
+    containers.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
 
     int number = 0;
 

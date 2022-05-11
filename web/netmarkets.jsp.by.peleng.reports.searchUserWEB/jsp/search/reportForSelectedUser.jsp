@@ -68,7 +68,9 @@
 <%
     WTUser selectedUser = getUserByName((String) request.getSession().getAttribute("selectedUser"));
     List<WTContainer> containers = getAllContainersInWindchill();
-    Map<WTContainer, HashSet<Role>> containersWithSelectedUser = new HashMap<WTContainer, HashSet<Role>>();
+    LinkedHashMap<WTContainer, HashSet<Role>> containersWithSelectedUser = new LinkedHashMap<>();
+
+    containers.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
 
     int number = 0;
 

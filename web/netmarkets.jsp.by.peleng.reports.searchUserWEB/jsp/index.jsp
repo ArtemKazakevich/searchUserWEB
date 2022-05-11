@@ -30,7 +30,7 @@
 
     <div class="box">
         <div class="but">
-            <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/add/searchUserToAdd">
+            <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/add/addUser">
                 <button id="js-button-2"><span>Добавить пользователя </span></button>
             </a>
         </div>

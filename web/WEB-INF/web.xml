@@ -55,15 +55,6 @@
     <!--Add-->
 
     <servlet>
-        <servlet-name>SearchGroupServletToAdd</servlet-name>
-        <servlet-class>ext.by.peleng.reports.searchUserWEB.add.SearchGroupServletToAdd</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SearchGroupServletToAdd</servlet-name>
-        <url-pattern>/servlet/searchUserWEB/add/searchGroupToAdd</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>AddUserServlet</servlet-name>
         <servlet-class>ext.by.peleng.reports.searchUserWEB.add.AddUserServlet</servlet-class>
     </servlet>

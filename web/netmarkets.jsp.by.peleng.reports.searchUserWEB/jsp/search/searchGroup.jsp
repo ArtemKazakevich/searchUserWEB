@@ -1,4 +1,10 @@
 <%@ page import="java.util.List" %>
+<%@ page import="wt.org.WTGroup" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="wt.query.QuerySpec" %>
+<%@ page import="wt.fc.QueryResult" %>
+<%@ page import="wt.fc.PersistenceHelper" %>
+<%@ page import="wt.util.WTException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -19,16 +25,17 @@
 </div>
 
 <%
-    List<String> groupList = (List<String>) request.getSession().getAttribute("groupListToSearch");
+//    List<String> groupList = (List<String>) request.getSession().getAttribute("groupListToSearch");
+    List<WTGroup> groupList = findAllGroup();
 %>
 
 <form method="post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/search/searchGroup">
 
     <datalist id="listGroups">
         <%
-            for (String s : groupList) {
+            for (WTGroup s : groupList) {
         %>
-        <option value="<%=s%>"><%=s%>
+        <option value="<%=s.getName()%>"><%=s.getName()%>
         </option>
         <%
             }
@@ -48,6 +55,36 @@
 </form>
 
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/spinner.js"></script>
+
+<%!
+    private List<WTGroup> findAllGroup() {
+
+        List<WTGroup> groups = new ArrayList<>();
+
+        QuerySpec querySpec;
+        QueryResult qr = null;
+        try {
+            querySpec = new QuerySpec(WTGroup.class);
+            qr = PersistenceHelper.manager.find(querySpec);
+        } catch (WTException e) {
+            e.printStackTrace();
+        }
+
+        while (qr.hasMoreElements()) {
+            WTGroup group = (WTGroup) qr.nextElement();
+
+            if (!group.isDisabled()) {
+
+                // (group.getDn() != null & group.getContainerName().equals("PELENG"))
+                if (group.getDn() != null) {
+                    groups.add(group);
+                }
+            }
+        }
+
+        return groups;
+    }
+%>
 
 </body>
 </html>

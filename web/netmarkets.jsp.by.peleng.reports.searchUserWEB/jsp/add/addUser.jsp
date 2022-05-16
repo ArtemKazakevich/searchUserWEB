@@ -1,11 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page import="wt.util.WTException" %>
-<%@ page import="wt.org.WTUser" %>
-<%@ page import="wt.query.QuerySpec" %>
-<%@ page import="wt.fc.QueryResult" %>
-<%@ page import="wt.fc.PersistenceHelper" %>
 <%@ page import="java.util.Locale" %>
 
 <html>
@@ -13,7 +8,7 @@
     <title>Add User</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/add/addUserStyle.css">
+          href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/add/addStyle.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/css/spinner.css">
     <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/jsQuery/jquery-3.6.0.min.js"></script>
 </head>

@@ -35,7 +35,7 @@
             </a>
         </div>
         <div class="but">
-            <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/add/searchGroupToAdd">
+            <a href="${pageContext.request.contextPath}/servlet/searchUserWEB/add/addGroup">
                 <button id="js-button-3"><span>Добавить группу </span></button>
             </a>
         </div>

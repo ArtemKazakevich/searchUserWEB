@@ -173,31 +173,6 @@ public class AddUserServlet extends HttpServlet {
         return containers;
     }
 
-    // метод получения user из БД
-    private WTUser getUser(String searchUser) {
-        WTUser u = null;
-        QuerySpec querySpec;
-        QueryResult qr = null;
-        try {
-            querySpec = new QuerySpec(WTUser.class);
-            qr = PersistenceHelper.manager.find(querySpec);
-        } catch (WTException e) {
-            e.printStackTrace();
-        }
-
-        while (qr.hasMoreElements()) {
-            WTUser user = (WTUser) qr.nextElement();
-
-            if (!user.isDisabled()) {
-                if (searchUser.equals(user.getFullName().replace(",", ""))) {
-                    u = user;
-                }
-            }
-        }
-
-        return u;
-    }
-
     // метод добавления user и роли в изделие
     private void addUserAndRole(Role role, WTUser user, ContainerTeam containerTeam) {
         Transaction localTransaction = new Transaction();

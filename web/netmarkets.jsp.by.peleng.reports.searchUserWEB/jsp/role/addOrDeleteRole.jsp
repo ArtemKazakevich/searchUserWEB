@@ -31,7 +31,7 @@
 
     <div class="block_input">
         <input type="text" id="inputProduct" placeholder="Поиск изделий">
-        <select style="margin-bottom: 18%;" id="selectProduct" multiple="true" class="product_1">
+        <select style="margin-bottom: 8%;" id="selectProduct" multiple="true" class="product_1">
             <c:forEach items="${containersForRole}" var="container">
                 <option value="${container.getName()}">${container.getName()}</option>
             </c:forEach>
@@ -46,22 +46,20 @@
     </div>
 
     <div class="block_input">
-        <div style="margin-bottom: 28%;" class="button">
+        <div style="margin-bottom: 38%;" class="button">
             <button class="addProduct"><span>Добавить </span></button>
-            <button class="addAllProduct"><span>Добавить все </span></button>
             <button class="removeProduct"><span>Удалить </span></button>
             <button class="removeAllProduct"><span>Удалить все </span></button>
         </div>
         <div class="button">
             <button class="addRole"><span>Добавить </span></button>
-            <button class="addAllRole"><span>Добавить все </span></button>
             <button class="removeRole"><span>Удалить </span></button>
             <button class="removeAllRole"><span>Удалить все </span></button>
         </div>
     </div>
 
     <form id="formBlock" class="block_input_form" method = "post" action="${pageContext.request.contextPath}/servlet/searchUserWEB/role/addOrDeleteRoleServlet">
-        <select id="select_1" style="margin: 3% 0 30%;" multiple="true" class="product_2" name="selectedProductForRole" required></select>
+        <select id="select_1" style="margin: 10% 0 20%;" multiple="true" class="product_2" name="selectedProductForRole" required></select>
         <select id="select_2" multiple="true" class="role_2" name="selectedRoleForRole" required></select>
         <div style="margin-top: 5%;">
             <button id="js-button-add_1" class="button_add">
@@ -112,7 +110,6 @@
     but_2.addEventListener('click', trigger_2);
 </script>
 
-<script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/add/addScript.js"></script>
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/role/addOrDeleteRoleServlet.js"></script>
 <script src="${pageContext.request.contextPath}/netmarkets/jsp/by/peleng/reports/searchUserWEB/js/spinner.js"></script>
 
